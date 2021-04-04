@@ -1,0 +1,40 @@
+@import '~src/variables.scss';
+.header{
+  &-main{
+    background: #FFFFFF;
+    .navbar-brand{
+      color: $accent-color;
+      font-weight: 500;
+      font-size: 1.6rem;
+    }
+    .header-footer-icon {
+      display: flex !important;
+      flex-basis: auto;
+    }
+    .header-navbar-nav {
+      display: flex;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+      .nav-item {
+        .nav-link {
+          color: #000000;
+        }
+      }
+    }
+  }
+  &-category {
+    background: $accent-color;
+    .navbar-nav {
+      .nav-link {
+        color: #e2e2e2;
+      }
+      .show > .nav-link,
+      .active > .nav-link,
+      .nav-link.show,
+      .nav-link.active {
+        color: #FFFFFF;
+      }
+    }
+  }
+}
