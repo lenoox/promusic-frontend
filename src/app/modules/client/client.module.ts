@@ -5,11 +5,13 @@ import {SharedModule} from '../../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {CategoryComponent} from './category/category.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductDetailComponent
   ],
   exports: [
     HomeComponent

@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProductService} from '../../../shared/service/product.service';
-import {Subscription} from 'rxjs';
-
 import {environment} from '../../../../environments/environment';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit  {
   productList: any = [];
   pathUploads;
-
-  constructor(private productService: ProductService) {
+  categoryName;
+  categorySlug;
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute) {
     this.pathUploads = environment.pathUploads;
   }
 
@@ -21,9 +22,13 @@ export class CategoryComponent implements OnInit {
     this.loadProduct();
   }
 
-  loadProduct(): Subscription {
-    return this.productService.GetProducts().subscribe((data: {}) => {
-      this.productList = data;
+  loadProduct(): void{
+    this.route.params.subscribe(res => {
+      this.categorySlug = res.slug;
+      this.productService.GetProducts(this.categorySlug).subscribe((data: {}) => {
+        this.productList = data;
+        this.categoryName = data[0].category.name;
+      });
     });
   }
 }

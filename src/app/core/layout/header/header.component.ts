@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {CategoryService} from '../../../shared/service/category.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +9,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public isMenuCollapsed = true;
-
-  constructor() {
+  categoryMenu: any = [];
+  constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
+    this.loadMenu();
   }
-
+  loadMenu(): Subscription {
+    return this.categoryService.GetCategorys().subscribe((data: {}) => {
+      this.categoryMenu = data;
+    });
+  }
 }

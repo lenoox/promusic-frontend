@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Product } from '../model/product';
+import {Category} from '../model/category';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
 
   baseurl = 'http://localhost:8080';
 
@@ -18,26 +18,27 @@ export class ProductService {
     })
   };
 
-  CreateProduct(data): Observable<Product> {
-    return this.http.post<Product>(this.baseurl + '/product/', JSON.stringify(data), this.httpOptions)
+  CreateCategory(data): Observable<Category> {
+    return this.http.post<Category>(this.baseurl + '/category/', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetProduct(id): Observable<Product> {
-    return this.http.get<Product>(this.baseurl + '/product/' + id)
+  GetCategory(id): Observable<Category> {
+    return this.http.get<Category>(this.baseurl + '/category/' + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetProducts(slug): Observable<Product> {
-    const params = new HttpParams().set('category', slug);
-    return this.http.get<Product>(this.baseurl + '/product', {
-      params
+  GetCategorys(): Observable<Category> {
+    const object = {  };
+
+    return this.http.get<Category>(this.baseurl + '/category', {
+      params: object
     })
       .pipe(
         retry(1),
@@ -45,16 +46,16 @@ export class ProductService {
       );
   }
 
-  UpdateProduct(id, data): Observable<Product> {
-    return this.http.put<Product>(this.baseurl + '/product/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateCategory(id, data): Observable<Category> {
+    return this.http.put<Category>(this.baseurl + '/category/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  DeleteProduct(id): Observable<any> {
-    return this.http.delete<Product>(this.baseurl + '/product/' + id, this.httpOptions)
+  DeleteCategory(id): Observable<any> {
+    return this.http.delete<Category>(this.baseurl + '/category/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
