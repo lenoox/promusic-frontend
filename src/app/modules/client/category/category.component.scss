@@ -1,0 +1,34 @@
+@import '~src/variables.scss';
+.category{
+  background-color: $list-bg-color;
+
+  &-header{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    height: 15vh;
+    img{
+      width: 100%;
+      height: 15vh;
+      object-fit: cover;
+    }
+    &-title{
+      font-weight: 700;
+      font-size: 1.6rem;
+      position:absolute;
+      color: white;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-cart-icon{
+    width: 34px;
+    height: 34px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background: $accent-color;
+  }
+}

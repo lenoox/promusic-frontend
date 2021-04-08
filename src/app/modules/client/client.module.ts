@@ -4,10 +4,12 @@ import {ClientRoutingModule} from './client-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
+import {CategoryComponent} from './category/category.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    CategoryComponent
   ],
   exports: [
     HomeComponent
