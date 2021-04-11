@@ -1,0 +1,87 @@
+<section class="register container d-flex h-100">
+  <div class="row align-self-center w-100">
+    <div class="col-8 mx-auto">
+      <h3 class="my-3 text-center">Logowanie</h3>
+      <div *ngIf="responseMessage" class="text-success">
+        <ngb-alert [type]="'success'">Twoje konto zostało utworzone</ngb-alert>
+      </div>
+      <div *ngIf="responseMessage==false" class="text-success">
+        <ngb-alert [type]="'danger'">Wystąpił błąd</ngb-alert>
+      </div>
+      <form [formGroup]="registerUserForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstNameInput">Imię</label>
+            <input formControlName="firstName" type="text" class="form-control" id="firstNameInput"  placeholder="Imię">
+            <div *ngIf="getControl.firstName.touched && getControl.firstName.invalid" class="text-danger">
+              <div *ngIf="getControl.firstName.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastNameInput">Nazwisko</label>
+            <input formControlName="lastName" type="text" class="form-control" id="lastNameInput"  placeholder="Nazwisko">
+            <div *ngIf="getControl.lastName.touched && getControl.lastName.invalid" class="text-danger">
+              <div *ngIf="getControl.lastName.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="emailInput">Adres e-mail</label>
+            <input formControlName="email" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
+            <div *ngIf="getControl.email.touched && getControl.email.invalid" class="text-danger">
+              <div *ngIf="getControl.email.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="phoneNumberInput">Numer telefonu</label>
+            <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumberInput" placeholder="Numer telefonu">
+            <div *ngIf="getControl.phoneNumber.touched && getControl.phoneNumber.invalid" class="text-danger">
+              <div *ngIf="getControl.phoneNumber.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="passwordInput">Hasło</label>
+            <input formControlName="password" type="password" class="form-control" id="passwordInput" placeholder="Hasło">
+            <div *ngIf="getControl.password.touched && getControl.password.invalid" class="text-danger">
+              <div *ngIf="getControl.password.errors.required">Pole jest wymagane</div>
+            </div>
+            <div *ngIf="(getControl.confirmPassword.touched ||getControl.password.touched) && registerUserForm.errors?.notEquivalent" class="text-danger">
+              <div *ngIf="registerUserForm.errors?.notEquivalent">Hasła nie są takie same</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="confirmPasswordInput">Hasło</label>
+            <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPasswordInput" placeholder="Hasło">
+            <div *ngIf="getControl.confirmPassword.touched && getControl.confirmPassword.invalid" class="text-danger">
+              <div *ngIf="getControl.confirmPassword.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="addressInput">Adres</label>
+            <input formControlName="address" type="text" class="form-control" id="addressInput" placeholder="Adres">
+            <div *ngIf="getControl.address.touched && getControl.address.invalid" class="text-danger">
+              <div *ngIf="getControl.address.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cityInput">Miasto</label>
+            <input formControlName="city" type="text" class="form-control" id="cityInput" placeholder="Miasto">
+            <div *ngIf="getControl.city.touched && getControl.city.invalid" class="text-danger">
+              <div *ngIf="getControl.city.errors.required">Pole jest wymagane</div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!registerUserForm.valid" class="btn btn-primary w-100">Zarejestruj się</button>
+        <div class="text-center my-1">
+          <a [routerLink]="'/login'" >Masz już konto, zaloguj się</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
