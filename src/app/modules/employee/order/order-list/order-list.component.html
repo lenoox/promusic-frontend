@@ -1,0 +1,20 @@
+
+<h2>Zamówienia</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="d-inline-block col-1" scope="col">#</th>
+    <th class="d-inline-block col-5" scope="col">Użytkownik</th>
+    <th class="d-inline-block col-3" scope="col">Status</th>
+    <th class="d-inline-block col-3" scope="col">Kwota</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orderList; index as i">
+    <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
+    <td class="d-inline-block col-5">{{ order.client.firstName}}{{ order.client.lastName}}</td>
+    <td class="d-inline-block col-3">{{ order.status.name}}</td>
+    <td class="d-inline-block col-3">{{ order.grandTotal}}</td>
+  </tr>
+  </tbody>
+</table>
