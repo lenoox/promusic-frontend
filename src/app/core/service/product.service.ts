@@ -44,6 +44,16 @@ export class ProductService {
         catchError(this.errorHandler)
       );
   }
+  GetProductsByIds(ids): Observable<Product[]> {
+    const params = new HttpParams().set('ids', ids);
+    return this.http.get<Product>(this.baseurl + '/product/cart', {
+      params
+    })
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
+  }
 
   UpdateProduct(id, data): Observable<Product> {
     return this.http.put<Product>(this.baseurl + '/product/' + id, JSON.stringify(data), this.httpOptions)
