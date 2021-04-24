@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,14 @@ import {AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validat
 })
 export class LoginComponent implements OnInit {
   loginUserForm: FormGroup;
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit(): void {
     this.loginUserForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
@@ -21,6 +26,11 @@ export class LoginComponent implements OnInit {
     return this.loginUserForm.controls;
   }
   onSubmit(): void{
-    console.log(this.loginUserForm);
+    this.authenticationService.login(this.loginUserForm.value)
+      .subscribe(() => {
+       this.router.navigate(['/employee']).then(_ => console.log('You are employee'));
+      }, (err: any) => {
+        console.log(err);
+      });
   }
 }

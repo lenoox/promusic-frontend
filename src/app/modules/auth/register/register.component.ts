@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-import {UserService} from '../../../shared/service/user.service';
+import {UserService} from '../../../core/service/user.service';
 
 
 @Component({
@@ -21,7 +20,7 @@ export class RegisterComponent implements OnInit {
     this.registerUserForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],

@@ -4,14 +4,14 @@
       <h3 class="my-3">Logowanie</h3>
       <form [formGroup]="loginUserForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
-          <label for="emailInput">Adres e-mail</label>
-          <input formControlName="email" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
-          <div *ngIf="getControl.email.touched && getControl.email.invalid" class="text-danger">
-            <div *ngIf="getControl.email.errors.required">Pole jest wymagane</div>
+          <label for="emailInput" class="sr-only">Adres e-mail</label>
+          <input formControlName="username" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
+          <div *ngIf="getControl.username.touched && getControl.username.invalid" class="text-danger">
+            <div *ngIf="getControl.username.errors.required">Pole jest wymagane</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="passwordInput">Hasło</label>
+          <label for="passwordInput" class="sr-only">Hasło</label>
           <input formControlName="password" type="password" class="form-control" id="passwordInput" placeholder="Hasło">
           <div *ngIf="getControl.password.touched && getControl.password.invalid" class="text-danger">
             <div *ngIf="getControl.password.errors.required">Pole jest wymagane</div>
