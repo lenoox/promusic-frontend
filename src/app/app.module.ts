@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {ClientModule} from './modules/client/client.module';
 import {AuthModule} from './modules/auth/auth.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpTokenInterceptor} from './core/interceptors/http-token.interceptor';
+import {EmployeeModule} from './modules/employee/employee.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +19,13 @@ import {AuthModule} from './modules/auth/auth.module';
     ClientModule,
     AuthModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
