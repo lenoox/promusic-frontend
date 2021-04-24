@@ -17,7 +17,8 @@ import {EmployeeModule} from './modules/employee/employee.module';
     AppRoutingModule,
     CoreModule,
     ClientModule,
-    AuthModule
+    EmployeeModule,
+    AuthModule,
   ],
   providers: [
     {

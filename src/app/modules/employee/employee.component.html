@@ -1,0 +1,18 @@
+<section class="employee">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/employee/home']">Home</a>
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/employee/order']">Orders</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <router-outlet></router-outlet>
+          <div class="tab-pane fade show active" id="v-pills-home"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
