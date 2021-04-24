@@ -1,47 +1,42 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { User } from '../model/user';
-
+import { Product } from '../../shared/model/product';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProductService {
 
   baseurl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
-  httpOptions: {
-    headers?: HttpHeaders;
-    observe: 'response';
-    params?: HttpParams;
-  } = {
-    headers:  new HttpHeaders().append(
-      'Content-Type', 'application/json',
-    ),
-    observe: 'response'
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   };
 
-  CreateUser(data): Observable<HttpResponse<User>> {
-    return this.http.post(this.baseurl + '/users/', JSON.stringify(data), this.httpOptions)
+  CreateProduct(data): Observable<Product> {
+    return this.http.post<Product>(this.baseurl + '/product/', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetUser(id): Observable<User> {
-    return this.http.get<User>(this.baseurl + '/users/' + id)
+  GetProduct(id): Observable<Product> {
+    return this.http.get<Product>(this.baseurl + '/product/' + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetUsers(slug): Observable<User> {
+  GetProducts(slug): Observable<Product> {
     const params = new HttpParams().set('category', slug);
-    return this.http.get<User>(this.baseurl + '/user', {
+    return this.http.get<Product>(this.baseurl + '/product', {
       params
     })
       .pipe(
@@ -50,16 +45,16 @@ export class UserService {
       );
   }
 
-  UpdateUser(id, data): Observable<User> {
-    return this.http.put<User>(this.baseurl + '/users/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateProduct(id, data): Observable<Product> {
+    return this.http.put<Product>(this.baseurl + '/product/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  DeleteUser(id): Observable<any> {
-    return this.http.delete<User>(this.baseurl + '/users/' + id, this.httpOptions)
+  DeleteProduct(id): Observable<any> {
+    return this.http.delete<Product>(this.baseurl + '/product/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)

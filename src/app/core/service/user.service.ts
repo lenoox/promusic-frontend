@@ -1,44 +1,48 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Category} from '../model/category';
+import { User } from '../../shared/model/user';
+
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class UserService {
 
   baseurl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  httpOptions: {
+    headers?: HttpHeaders;
+    observe: 'response';
+    params?: HttpParams;
+  } = {
+    headers:  new HttpHeaders().append(
+      'Content-Type', 'application/json',
+    ),
+    observe: 'response'
   };
 
-  CreateCategory(data): Observable<Category> {
-    return this.http.post<Category>(this.baseurl + '/category/', JSON.stringify(data), this.httpOptions)
+  CreateUser(data): Observable<HttpResponse<User>> {
+    return this.http.post(this.baseurl + '/users/', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetCategory(id): Observable<Category> {
-    return this.http.get<Category>(this.baseurl + '/category/' + id)
+  GetUser(id): Observable<User> {
+    return this.http.get<User>(this.baseurl + '/users/' + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  GetCategorys(): Observable<Category> {
-    const object = {  };
-
-    return this.http.get<Category>(this.baseurl + '/category', {
-      params: object
+  GetUsers(slug): Observable<User> {
+    const params = new HttpParams().set('category', slug);
+    return this.http.get<User>(this.baseurl + '/user', {
+      params
     })
       .pipe(
         retry(1),
@@ -46,16 +50,16 @@ export class CategoryService {
       );
   }
 
-  UpdateCategory(id, data): Observable<Category> {
-    return this.http.put<Category>(this.baseurl + '/category/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateUser(id, data): Observable<User> {
+    return this.http.put<User>(this.baseurl + '/users/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  DeleteCategory(id): Observable<any> {
-    return this.http.delete<Category>(this.baseurl + '/category/' + id, this.httpOptions)
+  DeleteUser(id): Observable<any> {
+    return this.http.delete<User>(this.baseurl + '/users/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
