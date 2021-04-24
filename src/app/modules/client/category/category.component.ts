@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ProductService} from '../../../shared/service/product.service';
+import {ProductService} from '../../../core/service/product.service';
 import {environment} from '../../../../environments/environment';
 import {ActivatedRoute} from '@angular/router';
 
