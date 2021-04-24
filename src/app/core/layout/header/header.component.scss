@@ -37,4 +37,23 @@
       }
     }
   }
+  &-badge-wrapper {
+    position: relative;
+  }
+
+  &-badge {
+    font-size: .6rem;
+    position: absolute;
+    top: -5px;
+    right: 25px;
+    width: 17px;
+    height: 17px;
+
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    background-color: $accent-color;
+    border-radius: 50%;
+    z-index: 1000;
+  }
 }
