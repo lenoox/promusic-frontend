@@ -6,12 +6,16 @@ import {RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {CategoryComponent} from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CategoryComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent,
+    OrderComponent
   ],
   exports: [
     HomeComponent
