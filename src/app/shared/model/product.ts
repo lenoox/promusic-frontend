@@ -1,12 +1,14 @@
+import {Brand} from './brand';
+import {Category} from './category';
 export class Product {
-  id: number;
+  id?: number;
   name: string;
   slug: string;
   quantity: number;
   price: number;
   description: string;
   thumbnail: string;
-  category: any;
-  brand: any;
+  category: Category;
+  brand: Brand;
   eanCode: string;
 }

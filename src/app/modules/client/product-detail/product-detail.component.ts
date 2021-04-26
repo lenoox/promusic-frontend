@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../../core/service/product.service';
 import {Subscription} from 'rxjs';
 import {Product} from '../../../shared/model/product';
-import {CartService} from '../../../core/service/cart.service';
+import {CartLocalStorageService} from '../../../core/service/cart-local-storage.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +14,7 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   constructor(
     private productService: ProductService,
-    private cartService: CartService,
+    private cartService: CartLocalStorageService,
     private route: ActivatedRoute
   ) { }
 

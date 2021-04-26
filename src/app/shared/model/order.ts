@@ -9,5 +9,5 @@ export class Order {
   status: Status;
   employee?: User;
   grandTotal: number;
-  productOrder?: ProductOrder[];
+  productOrder: ProductOrder[];
 }

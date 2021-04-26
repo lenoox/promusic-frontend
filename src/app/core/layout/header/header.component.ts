@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category.service';
 import {Subscription} from 'rxjs';
 import {AuthenticationService} from '../../authentication/authentication.service';
-import {CartService} from '../../service/cart.service';
+import {CartLocalStorageService} from '../../service/cart-local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   categoryMenu: any = [];
   constructor(
     private categoryService: CategoryService,
-    private cartService: CartService,
+    private cartLocalStorageService: CartLocalStorageService,
     private authenticationService: AuthenticationService
   ) {
   }
@@ -39,6 +39,6 @@ export class HeaderComponent implements OnInit {
     return this.authenticationService.isAuthorized();
   }
   showSizeProducts(): number{
-    return this.cartService.showSizeProducts();
+    return this.cartLocalStorageService.showSizeProducts();
   }
 }

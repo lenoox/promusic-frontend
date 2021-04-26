@@ -8,6 +8,7 @@ import {CategoryComponent} from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import { OrderComponent } from './order/order.component';
   exports: [
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ClientRoutingModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        ClientRoutingModule,
+        SharedModule,
+        ReactiveFormsModule
+    ]
 })
 export class ClientModule {
 }

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Product } from '../../shared/model/product';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +55,6 @@ export class ProductService {
         catchError(this.errorHandler)
       );
   }
-
   UpdateProduct(id, data): Observable<Product> {
     return this.http.put<Product>(this.baseurl + '/product/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
