@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProductService} from '../../../core/service/product.service';
-import {environment} from '../../../../environments/environment';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,25 +7,32 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit  {
+export class CategoryComponent implements OnInit {
   productList: any = [];
   categoryName;
   categorySlug;
+  page = 1;
+  sizePage = 10;
+  totalElements = 0;
   constructor(private productService: ProductService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.loadProduct();
+    this.loadProductSubscribe();
   }
-
-  loadProduct(): void{
+  loadProductSubscribe(): void{
     this.route.params.subscribe(res => {
+      this.page = 1;
       this.categorySlug = res.slug;
-      this.productService.GetProducts(this.categorySlug).subscribe((data: {}) => {
-        this.productList = data;
-        this.categoryName = data[0].category.name;
-      });
+      this.loadProduct();
+    });
+  }
+  loadProduct(): void{
+    this.productService.GetProducts(this.categorySlug, this.page, this.sizePage).subscribe((data) => {
+      this.productList = data.content;
+      this.categoryName = data.content[0].category.name;
+      this.totalElements = data.totalElements;
     });
   }
 }

@@ -25,6 +25,12 @@
           </div>
         </div>
       </div>
+      <ngb-pagination
+        [collectionSize]="totalElements"
+        [(page)]="page"
+        (pageChange)="loadProduct()"
+        aria-label="pagination"
+        class="d-flex justify-content-end"></ngb-pagination>
     </div>
   </div>
 </section>

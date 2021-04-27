@@ -1,7 +1,7 @@
 @import '~src/variables.scss';
 .category{
   background-color: $list-bg-color;
-
+  min-height: 100vh;
   &-header{
     position: relative;
     display: inline-block;

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Product } from '../../shared/model/product';
+import {Page} from '../../shared/model/page';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,11 @@ export class ProductService {
       );
   }
 
-  GetProducts(slug): Observable<Product> {
-    const params = new HttpParams().set('category', slug);
+  GetProducts(slug, page, size): Observable<Page<Product[]>>{
+    const params = new HttpParams()
+      .set('category', slug)
+      .set('page', page)
+      .set('size', size);
     return this.http.get<Product>(this.baseurl + '/product', {
       params
     })
