@@ -17,4 +17,5 @@
     <td class="d-inline-block col-3">{{ order.grandTotal}}</td>
   </tr>
   </tbody>
+  <ngb-pagination [collectionSize]="totalElements" [(page)]="page" (pageChange)="loadProduct()" aria-label="Default pagination"></ngb-pagination>
 </table>

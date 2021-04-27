@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
     this.loadProduct();
   }
   loadProduct(): void{
-    this.orderService.GetOrders().subscribe((data: Order[]) => {
+   /* this.orderService.GetOrders().subscribe((data: Order[]) => {
       this.ordersCount = data.length;
-    });
+    });*/
   }
 }

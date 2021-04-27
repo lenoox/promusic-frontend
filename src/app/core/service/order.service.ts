@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Order } from '../../shared/model/order';
+import {Page} from '../../shared/model/page';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,10 @@ export class OrderService {
       );
   }
 
-  GetOrders(): Observable<Order[]> {
-    const params = new HttpParams();
+  GetOrders(page, size): Observable<Page<Order[]>> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
     return this.http.get<Order>(this.baseurl + '/order', {
       params
     })
