@@ -7,7 +7,7 @@ import {TokenService} from '../authentication/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeGuard implements CanActivate {
+export class ClientGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -23,8 +23,8 @@ export class EmployeeGuard implements CanActivate {
         resolve(false);
       } else {
         this.authenticationService.getUserInfo().then(user => {
-          if (user.role.name === 'EMPLOYEE') {
-            console.log('Authorized');
+          if (user.role.name === 'USER') {
+            console.log('user');
             resolve(true);
           } else {
             console.log('NOT Authorized');

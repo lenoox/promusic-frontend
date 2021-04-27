@@ -16,9 +16,21 @@
           <p class="text-right">Producent: {{product?.brand.name}}</p>
           <p class="text-right">EAN-CODE: {{product?.eanCode}}</p>
           <p class="text-right">Darmowa dostawa od 300zł</p>
-          <button type="submit"
-                  class="btn btn-primary  w-100"
-                  (click)="setProduct(product?.id)">Dodaj do koszyka</button>
+
+          <div *ngIf="isClient(); else employee">
+            <button type="submit"
+                    class="btn btn-primary  w-100"
+                    [disabled]="!this.isClient"
+                    (click)="setProduct(product?.id)">Dodaj do koszyka</button>
+          </div>
+          <ng-template #employee>
+            <ng-container *ngIf="isEmployee(); else unauthorized">
+              <a  *ngIf="isEmployee()" [routerLink]="'/login'">Aby kupić zaloguj sie jak klient</a>
+            </ng-container>
+          </ng-template>
+          <ng-template #unauthorized>
+            <a [routerLink]="'/login'">Aby kupić zaloguj sie</a>
+          </ng-template>
         </div>
       </div>
       <div class="col-md-12">

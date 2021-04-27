@@ -4,6 +4,7 @@ import {ProductService} from '../../../core/service/product.service';
 import {Subscription} from 'rxjs';
 import {Product} from '../../../shared/model/product';
 import {CartLocalStorageService} from '../../../core/service/cart-local-storage.service';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartLocalStorageService,
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute
   ) { }
 
@@ -31,5 +33,11 @@ export class ProductDetailComponent implements OnInit {
 
   setProduct(id): void{
     this.cartService.addProduct(id);
+  }
+  isEmployee(): boolean{
+    return !!this.authenticationService.isEmployee();
+  }
+  isClient(): boolean{
+    return !!this.authenticationService.isClient();
   }
 }

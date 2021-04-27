@@ -39,10 +39,12 @@ export class OrderComponent implements OnInit {
       productOrder: this.formBuilder.array([]),
     });
     const control = this.orderForm.get('productOrder') as FormArray;
-    this.orderForm.patchValue({
-      grandTotal: this.cart.grandTotal
-    });
-    this.cart.productOrder.forEach(x => {
+    if (!!this.cart?.grandTotal){
+      this.orderForm.patchValue({
+        grandTotal: this.cart.grandTotal
+      });
+    }
+    this.cart?.productOrder.forEach(x => {
       control.push(this.patchValues( x.quantity, x.product));
     });
 

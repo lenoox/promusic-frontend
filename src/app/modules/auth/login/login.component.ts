@@ -28,9 +28,15 @@ export class LoginComponent implements OnInit {
   onSubmit(): void{
     this.authenticationService.login(this.loginUserForm.value)
       .subscribe(() => {
-       this.router.navigate(['/employee']).then(_ => console.log('You are employee'));
+       this.router.navigate(['.']).then(_ => {});
       }, (err: any) => {
         console.log(err);
       });
+  }
+  isEmployee(): boolean{
+    return this.authenticationService.isEmployee();
+  }
+  isClient(): boolean{
+    return this.authenticationService.isClient();
   }
 }

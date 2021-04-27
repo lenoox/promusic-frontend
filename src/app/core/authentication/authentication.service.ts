@@ -38,8 +38,7 @@ export class AuthenticationService {
       'Something bad happened; please try again later.');
   }
   login(loginData: any): Observable<any> {
-    this.tokenService.removeToken();
-    this.tokenService.removeRefreshToken();
+    this.logout();
     const body = new HttpParams()
       .set('username', loginData.username)
       .set('password', loginData.password)
@@ -50,6 +49,7 @@ export class AuthenticationService {
         tap(res => {
           this.tokenService.saveToken(res.access_token);
           this.tokenService.saveRefreshToken(res.refresh_token);
+          this.getUserInfo();
         }),
         catchError(AuthenticationService.handleError)
       );

@@ -5,6 +5,7 @@ import {CategoryComponent} from './category/category.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {CartComponent} from './cart/cart.component';
 import {OrderComponent} from './order/order.component';
+import {ClientGuard} from '../../core/guards/client.guard';
 
 const routes: Routes = [
   {
@@ -21,10 +22,12 @@ const routes: Routes = [
   },
   {
     path: 'cart',
+    canActivate: [ ClientGuard ],
     component: CartComponent,
   },
   {
     path: 'order',
+    canActivate: [ ClientGuard ],
     component: OrderComponent
   }
 ];

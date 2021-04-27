@@ -20,7 +20,7 @@
                 </div>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isClient()">
             <a class="nav-link" [routerLink]="'cart'" (click)="isMenuCollapsed = true">
               <div class="d-flex flex-column justify-content-center align-items-center header-badge-wrapper">
                 <div class="d-flex justify-content-center align-items-center header-badge" id="#lblCartCount">
