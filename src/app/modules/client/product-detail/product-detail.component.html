@@ -25,7 +25,7 @@
           </div>
           <ng-template #employee>
             <ng-container *ngIf="isEmployee(); else unauthorized">
-              <a  *ngIf="isEmployee()" [routerLink]="'/login'">Aby kupić zaloguj sie jak klient</a>
+              <a *ngIf="isEmployee()" [routerLink]="'/login'">Aby kupić zaloguj sie jako klient</a>
             </ng-container>
           </ng-template>
           <ng-template #unauthorized>

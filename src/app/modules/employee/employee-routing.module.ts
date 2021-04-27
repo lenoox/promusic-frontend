@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {OrderListComponent} from './order/order-list/order-list.component';
 import {EmployeeGuard} from '../../core/guards/employee.guard';
 import {EmployeeComponent} from './employee.component';
+import {AddProductComponent} from './product/add-product/add-product.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'order',
         component: OrderListComponent,
+      },
+      {
+        path: 'product/add',
+        component: AddProductComponent,
       }
     ]
   }

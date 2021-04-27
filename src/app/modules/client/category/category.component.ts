@@ -10,12 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CategoryComponent implements OnInit  {
   productList: any = [];
-  pathUploads;
   categoryName;
   categorySlug;
   constructor(private productService: ProductService,
               private route: ActivatedRoute) {
-    this.pathUploads = environment.pathUploads;
   }
 
   ngOnInit(): void {

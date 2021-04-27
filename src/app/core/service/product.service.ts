@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Product } from '../../shared/model/product';
@@ -13,13 +13,17 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  httpOptions: {
+    headers?: HttpHeaders;
+    observe: 'response';
+    params?: HttpParams;
+  } = {
+    headers:  new HttpHeaders().append(
+      'Content-Type', 'application/json',
+    ),
+    observe: 'response'
   };
-
-  CreateProduct(data): Observable<Product> {
+  CreateProduct(data): Observable<HttpResponse<Product>>  {
     return this.http.post<Product>(this.baseurl + '/product/', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
