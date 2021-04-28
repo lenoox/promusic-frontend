@@ -53,8 +53,8 @@ export class OrderService {
       );
   }
 
-  UpdateOrder(id, data): Observable<Order> {
-    return this.http.put<Order>(this.baseurl + '/order/' + id, JSON.stringify(data), this.httpOptions)
+  changeStatusByOrder(id, data): Observable<Order> {
+    return this.http.put<Order>(this.baseurl + '/order/' + id + '/status', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)

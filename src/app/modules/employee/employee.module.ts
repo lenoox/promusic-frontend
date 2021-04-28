@@ -8,6 +8,7 @@ import {SharedModule} from '../../shared/shared.module';
 import { EmployeeComponent } from './employee.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { OrderDetailComponent } from './order/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     HomeComponent,
     OrderListComponent,
     EmployeeComponent,
-    AddProductComponent
+    AddProductComponent,
+    OrderDetailComponent
     ],
   imports: [
     CommonModule,

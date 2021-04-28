@@ -5,6 +5,7 @@ import {OrderListComponent} from './order/order-list/order-list.component';
 import {EmployeeGuard} from '../../core/guards/employee.guard';
 import {EmployeeComponent} from './employee.component';
 import {AddProductComponent} from './product/add-product/add-product.component';
+import {OrderDetailComponent} from './order/order-detail/order-detail.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'order',
         component: OrderListComponent,
+      },
+      {
+        path: 'order/:id',
+        component: OrderDetailComponent,
       },
       {
         path: 'product/add',

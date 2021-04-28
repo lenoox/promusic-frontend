@@ -5,16 +5,26 @@
   <tr>
     <th class="d-inline-block col-1" scope="col">#</th>
     <th class="d-inline-block col-5" scope="col">Użytkownik</th>
-    <th class="d-inline-block col-3" scope="col">Status</th>
-    <th class="d-inline-block col-3" scope="col">Kwota</th>
+    <th class="d-inline-block col-2" scope="col">Status</th>
+    <th class="d-inline-block col-2" scope="col">Kwota</th>
+    <th class="d-inline-block col-2" scope="col">Akcja</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let order of orderList; index as i">
     <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
     <td class="d-inline-block col-5">{{ order.client.firstName}}{{ order.client.lastName}}</td>
-    <td class="d-inline-block col-3">{{ order.status.name}}</td>
-    <td class="d-inline-block col-3">{{ order.grandTotal}}</td>
+    <td class="d-inline-block col-2">{{ order.status.name}}</td>
+    <td class="d-inline-block col-2">{{ order.grandTotal}}</td>
+    <td class="d-inline-block col-2" [routerLink]="['/employee/order',order.id]">
+      <span
+        class="iconify"
+        data-icon="clarity:note-edit-line"
+        data-inline="false"
+        data-width="30px"
+        data-height="30px"
+      ></span>
+    </td>
   </tr>
   </tbody>
   <ngb-pagination

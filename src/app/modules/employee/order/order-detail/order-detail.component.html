@@ -1,0 +1,81 @@
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 my-2">
+        <h3 class="card-text">Zamówienie</h3>
+      </div>
+      <div class="col-md-12 mt-4">
+        <div class="card shadow-sm">
+          <div class="table-responsive">
+            <table class="table table-striped margin-0">
+              <thead>
+                <tr>
+                  <th class="d-inline-block col-1" scope="col">#</th>
+                  <th class="d-inline-block col-2" scope="col">Zdjecie</th>
+                  <th class="d-inline-block col-5" scope="col">Nazwa</th>
+                  <th class="d-inline-block col-2" scope="col">Ilość</th>
+                  <th class="d-inline-block col-2" scope="col">Cena</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cart of order?.productOrder; index as i">
+                  <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
+                  <td class="d-inline-block col-2"><img src="{{ cart?.product.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
+                  <td class="d-inline-block col-5">{{ cart?.product.name }}</td>
+                  <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
+                  <td class="d-inline-block col-2">{{ cart?.product.price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="p-4" *ngIf="order?.productOrder.length == 0">Brak produktów w zamówieniu</div>
+        </div>
+      </div>
+      <div class="col-md-12 mt-4">
+        <div class="card p-4 shadow-sm">
+          <h3 class="card-text">Dane użytkownika</h3>
+          <div>
+            <p>Imie i nazwisko: {{order?.client.firstName}} {{order?.client.lastName}}</p>
+            <p>Adres: {{order?.client.address}} {{order?.client.city}}</p>
+            <p>Numer kontaktowy: {{order?.client.phoneNumber}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mt-4">
+        <div class="card p-4 shadow-sm">
+          <h3 class="card-text">Twoja notatka do zamówienia</h3>
+            <div class="form-group">
+              <label for="note" class="sr-only">Notatka</label>
+              <textarea rows="3" class="form-control" id="note" placeholder="Notatka do zamówienia" [value]="order?.note" disabled></textarea>
+            </div>
+        </div>
+      </div>
+      <form class="col-md-12 pt-4" [formGroup]="statusForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="container">
+          <div class="row d-flex justify-content-lg-between">
+            <div class="col-md-7 card mr-2 py-4 px-4  shadow-sm">
+                <div formGroupName="status" class="form-group col-md-6">
+                  <label for="statusInput">Status</label>
+                  <select formControlName="id" class="form-control" id="statusInput">
+                    <option *ngFor="let status of statusList" [value]="status.id">{{status?.name}}</option>
+                  </select>
+                  <div *ngIf="getControl.status.get('id').touched && getControl.status.get('id').invalid" class="text-danger">
+                    <div *ngIf="getControl.status.get('id').errors.required">Pole jest wymagane</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4 card ml-2  py-4 px-4 shadow-sm">
+              <div *ngIf="order?.productOrder.length > 0; else error">
+                <div class="text-right">Do zapłaty: <h4>{{order.grandTotal | currency:'zł': true:'1.0'}}</h4></div>
+              </div>
+              <ng-template #error>Brak produktów w zamówieniu</ng-template>
+            </div>
+            <div class="col-md-12 d-flex justify-content-end py-4">
+              <button type="submit" class="btn btn-primary">Zapisz</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
