@@ -2,7 +2,10 @@
   <div class="category-header">
     <img src="/assets/img/category-header.png" class="img-fluid" alt="studio">
     <div  class="category-header-title d-flex  justify-content-center align-items-center">
-      <p>{{categoryName}}</p>
+
+      <div *ngIf="productList.length > 0; else error">
+        <p>{{categoryName}}</p>
+      </div>
     </div>
   </div>
   <div class="album py-4">
@@ -24,13 +27,18 @@
             </div>
           </div>
         </div>
+
+
       </div>
-      <ngb-pagination
-        [collectionSize]="totalElements"
-        [(page)]="page"
-        (pageChange)="loadProduct()"
-        aria-label="pagination"
-        class="d-flex justify-content-end"></ngb-pagination>
+      <div *ngIf="productList.length > 0; else error">
+        <ngb-pagination
+          [collectionSize]="totalElements"
+          [(page)]="page"
+          (pageChange)="loadProduct()"
+          aria-label="pagination"
+          class="d-flex justify-content-end"></ngb-pagination>
+      </div>
+      <ng-template #error><div class="text-center">Brak produktów w tej kateogorii</div></ng-template>
     </div>
   </div>
 </section>
