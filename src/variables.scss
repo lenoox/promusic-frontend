@@ -1,2 +1,7 @@
 $accent-color: #00A3FF;
 $list-bg-color: #FAFAFA;
+$min-height: 80vh;
+
+@mixin min-height{
+  min-height: $min-height;
+}

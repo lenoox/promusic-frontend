@@ -1,3 +1,7 @@
+@import '~src/variables.scss';
+.cart{
+  @include min-height;
+}
 .cart-thumbnail{
   width:20vh;
 }

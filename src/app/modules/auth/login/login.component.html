@@ -1,27 +1,29 @@
-<section class="login container d-flex h-100">
-  <div class="row align-self-center w-100">
-    <div class="col-4 mx-auto text-center">
-      <h3 class="my-3">Logowanie</h3>
-      <form [formGroup]="loginUserForm" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-group">
-          <label for="emailInput" class="sr-only">Adres e-mail</label>
-          <input formControlName="username" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
-          <div *ngIf="getControl.username.touched && getControl.username.invalid" class="text-danger">
-            <div *ngIf="getControl.username.errors.required">Pole jest wymagane</div>
+<section class="login d-flex h-100">
+  <div class="container align-self-center w-100">
+    <div class="row ">
+      <div class="col-4 mx-auto text-center">
+        <h3 class="my-3">Logowanie</h3>
+        <form [formGroup]="loginUserForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-group">
+            <label for="emailInput" class="sr-only">Adres e-mail</label>
+            <input formControlName="username" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
+            <div *ngIf="getControl.username.touched && getControl.username.invalid" class="text-danger">
+              <div *ngIf="getControl.username.errors.required">Pole jest wymagane</div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput" class="sr-only">Hasło</label>
-          <input formControlName="password" type="password" class="form-control" id="passwordInput" placeholder="Hasło">
-          <div *ngIf="getControl.password.touched && getControl.password.invalid" class="text-danger">
-            <div *ngIf="getControl.password.errors.required">Pole jest wymagane</div>
+          <div class="form-group">
+            <label for="passwordInput" class="sr-only">Hasło</label>
+            <input formControlName="password" type="password" class="form-control" id="passwordInput" placeholder="Hasło">
+            <div *ngIf="getControl.password.touched && getControl.password.invalid" class="text-danger">
+              <div *ngIf="getControl.password.errors.required">Pole jest wymagane</div>
+            </div>
           </div>
-        </div>
-        <button type="submit" class="btn btn-primary  w-100">Submit</button>
-        <div>
-          <a class="" [routerLink]="'/register'">Nie masz konta zarejestruj się</a>
-        </div>
-      </form>
+          <button type="submit" class="btn btn-primary  w-100">Submit</button>
+          <div>
+            <a class="" [routerLink]="'/register'">Nie masz konta zarejestruj się</a>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>

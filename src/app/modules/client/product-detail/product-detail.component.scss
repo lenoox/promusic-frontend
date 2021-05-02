@@ -1,3 +1,5 @@
+@import '~src/variables.scss';
 .pd{
+  @include min-height;
   background-color: #FAFAFA;
 }

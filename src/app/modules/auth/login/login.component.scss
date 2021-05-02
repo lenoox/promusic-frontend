@@ -1,3 +1,4 @@
+@import '~src/variables.scss';
 .login{
-  min-height: 70vh !important;
+  @include min-height;
 }
