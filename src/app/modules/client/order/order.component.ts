@@ -17,6 +17,8 @@ export class OrderComponent implements OnInit {
   orderForm: FormGroup;
   cart: CartRequest;
   userInfo: User;
+  orderIsSuccessful: boolean;
+  loading: boolean;
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private orderService: OrderService,
@@ -74,10 +76,18 @@ export class OrderComponent implements OnInit {
     return this.orderForm.get('grandTotal').value;
   }
   onSubmit(): void {
+    this.loading = true;
+    this.orderIsSuccessful = null;
     if (this.orderForm.value) {
       this.orderService.CreateOrder(this.orderForm.value)
-        .subscribe(() => {
+        .subscribe((data) => {
+          if (data.status === 200){
+            this.orderIsSuccessful = true;
+          }
+          this.loading = false;
         }, (err: any) => {
+          this.orderIsSuccessful = false;
+          this.loading = false;
           console.log(err);
         });
     }
