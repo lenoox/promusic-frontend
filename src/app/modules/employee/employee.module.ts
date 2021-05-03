@@ -6,9 +6,10 @@ import {HomeComponent} from './home/home.component';
 import {OrderListComponent} from './order/order-list/order-list.component';
 import {SharedModule} from '../../shared/shared.module';
 import { EmployeeComponent } from './employee.component';
-import { AddProductComponent } from './product/add-product/add-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { OrderDetailComponent } from './order/order-detail/order-detail.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 
 @NgModule({
@@ -16,8 +17,9 @@ import { OrderDetailComponent } from './order/order-detail/order-detail.componen
     HomeComponent,
     OrderListComponent,
     EmployeeComponent,
-    AddProductComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ProductListComponent,
+    ProductEditComponent
     ],
   imports: [
     CommonModule,

@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
     });
   }
   loadProduct(): void{
-    this.productService.GetProducts(this.categorySlug, this.page, this.sizePage).subscribe((data) => {
+    this.productService.GetProductsByCategory(this.categorySlug, this.page, this.sizePage).subscribe((data) => {
       this.productList = data.content;
       this.categoryName = data.content[0].category.name;
       this.totalElements = data.totalElements;

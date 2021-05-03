@@ -4,8 +4,9 @@ import {HomeComponent} from './home/home.component';
 import {OrderListComponent} from './order/order-list/order-list.component';
 import {EmployeeGuard} from '../../core/guards/employee.guard';
 import {EmployeeComponent} from './employee.component';
-import {AddProductComponent} from './product/add-product/add-product.component';
 import {OrderDetailComponent} from './order/order-detail/order-detail.component';
+import {ProductListComponent} from './product/product-list/product-list.component';
+import {ProductEditComponent} from './product/product-edit/product-edit.component';
 
 
 const routes: Routes = [
@@ -31,8 +32,16 @@ const routes: Routes = [
         component: OrderDetailComponent,
       },
       {
-        path: 'product/add',
-        component: AddProductComponent,
+        path: 'product',
+        component: ProductListComponent,
+      },
+      {
+        path: 'product/:id/edit',
+        component: ProductEditComponent,
+      },
+      {
+        path: 'product/new',
+        component: ProductEditComponent,
       }
     ]
   }

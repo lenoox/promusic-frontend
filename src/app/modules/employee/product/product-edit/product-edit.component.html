@@ -1,8 +1,8 @@
-<section class="orderad">
+<section class="proudct-e">
   <div class="container">
     <div class="row align-self-center w-100">
       <div class="col-12 mx-auto">
-        <h3 class="my-3 text-center">Dodawanie produktu</h3>
+        <h3 class="my-3 text-center">{{ editMode ? 'Edycja produktu' : 'Dodawanie produktu' }}</h3>
         <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-row">
             <div class="form-group col-md-12">
@@ -31,10 +31,10 @@
           </div>
           <div class="form-row">
             <div formGroupName="category" class="form-group col-md-6">
-                <label for="categoryInput">Kategoria</label>
-                <select formControlName="id" class="form-control" id="categoryInput">
-                  <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
-                </select>
+              <label for="categoryInput">Kategoria</label>
+              <select formControlName="id" class="form-control" id="categoryInput">
+                <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+              </select>
               <div *ngIf="getControl.category.touched && getControl.category.invalid" class="text-danger">
                 <div *ngIf="getControl.category.errors.required">Pole jest wymagane</div>
               </div>
@@ -77,9 +77,9 @@
               </div>
             </div>
           </div>
-          <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary w-100">Dodaj produkt</button>
+          <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary w-100">{{editMode? 'Zapisz produkt' : 'Dodaj produkt'}}</button>
           <div *ngIf="responseMessage" class="text-success my-2">
-            <ngb-alert [type]="'success'">Dodałeś produkt</ngb-alert>
+            <ngb-alert [type]="'success'">{{editMode? 'Zapisano produkt' : 'Dodano produkt'}}</ngb-alert>
           </div>
           <div *ngIf="responseMessage==false" class="text-danger my-2">
             <ngb-alert [type]="'danger'">Wystąpił błąd</ngb-alert>

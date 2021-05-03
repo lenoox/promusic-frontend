@@ -39,10 +39,19 @@ export class ProductService {
         catchError(this.errorHandler)
       );
   }
-
-  GetProducts(slug, page, size): Observable<Page<Product[]>>{
+  GetProductsByCategory(slug, page, size): Observable<Page<Product[]>>{
     const params = new HttpParams()
-      .set('category', slug)
+      .set('page', page)
+      .set('size', size);
+    return this.http.get<Product>(this.baseurl + '/product/category/' + slug, {
+      params
+    }).pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
+  }
+  GetProducts(page, size): Observable<Page<Product[]>>{
+    const params = new HttpParams()
       .set('page', page)
       .set('size', size);
     return this.http.get<Product>(this.baseurl + '/product', {
@@ -63,7 +72,7 @@ export class ProductService {
         catchError(this.errorHandler)
       );
   }
-  UpdateProduct(id, data): Observable<Product> {
+  UpdateProduct(id, data): Observable<HttpResponse<Product>> {
     return this.http.put<Product>(this.baseurl + '/product/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
