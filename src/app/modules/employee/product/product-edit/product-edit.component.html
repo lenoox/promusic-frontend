@@ -71,18 +71,22 @@
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="descriptionTextarea">Opis produktu</label>
-              <textarea  formControlName="description" class="form-control" id="descriptionTextarea" rows="5" placeholder="Opis"></textarea>
+              <app-text-editor class="text-editor" [control]="descriptionControl" id="descriptionTextarea"></app-text-editor>
               <div *ngIf="getControl.description.touched && getControl.description.invalid" class="text-danger">
                 <div *ngIf="getControl.description.errors.required">Pole jest wymagane</div>
               </div>
             </div>
           </div>
-          <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary w-100">{{editMode? 'Zapisz produkt' : 'Dodaj produkt'}}</button>
-          <div *ngIf="responseMessage" class="text-success my-2">
-            <ngb-alert [type]="'success'">{{editMode? 'Zapisano produkt' : 'Dodano produkt'}}</ngb-alert>
-          </div>
-          <div *ngIf="responseMessage==false" class="text-danger my-2">
-            <ngb-alert [type]="'danger'">Wystąpił błąd</ngb-alert>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary w-100">{{editMode? 'Zapisz produkt' : 'Dodaj produkt'}}</button>
+              <div *ngIf="responseMessage" class="text-success my-2">
+                <ngb-alert [type]="'success'">{{editMode? 'Zapisano produkt' : 'Dodano produkt'}}</ngb-alert>
+              </div>
+              <div *ngIf="responseMessage==false" class="text-danger my-2">
+                <ngb-alert [type]="'danger'">Wystąpił błąd</ngb-alert>
+              </div>
+            </div>
           </div>
         </form>
       </div>

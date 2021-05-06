@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../../../../shared/model/category';
 import {Brand} from '../../../../shared/model/brand';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -92,5 +92,8 @@ export class ProductEditComponent implements OnInit {
         this.productForm.patchValue(data);
       });
     }
+  }
+  get descriptionControl(): FormControl {
+    return this.productForm.controls.description as FormControl;
   }
 }

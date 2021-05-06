@@ -1,0 +1,7 @@
+:host quill-editor{
+  display: block;
+}
+:host quill-editor ::ng-deep .ql-container{
+  min-height: 100px !important;
+  max-height: 170px!important;
+}

@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,14 @@ import {ReactiveFormsModule} from '@angular/forms';
   exports: [
     HomeComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        ClientRoutingModule,
-        SharedModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    ClientRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot()
+  ]
 })
 export class ClientModule {
 }
