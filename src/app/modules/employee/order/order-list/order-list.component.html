@@ -13,7 +13,7 @@
     <tbody>
     <tr *ngFor="let order of orderList; index as i">
       <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
-      <td class="d-inline-block col-5">{{ order.client.firstName}}{{ order.client.lastName}}</td>
+      <td class="d-inline-block col-5">{{ order.client.firstName}} {{ order.client.lastName}}</td>
       <td class="d-inline-block col-2">{{ order.status.name}}</td>
       <td class="d-inline-block col-2">{{ order.grandTotal}}</td>
       <td class="d-inline-block col-2" [routerLink]="['/employee/order',order.id]">
