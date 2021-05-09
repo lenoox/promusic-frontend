@@ -12,8 +12,8 @@
                     Twoje konto
                   </div>
                   <div ngbDropdownMenu aria-labelledby="dropdownAccount">
-                    <button *ngIf="isEmployee()" [routerLink]="'employee'"  ngbDropdownItem>Twoje konto</button>
-                    <button *ngIf="isClient()" [routerLink]="'.'"  ngbDropdownItem>Twoje konto</button>
+                    <button *ngIf="isAuthorized()" [routerLink]="'my-account'"  ngbDropdownItem>Twoje konto</button>
+                    <button *ngIf="isEmployee()" [routerLink]="'employee'"  ngbDropdownItem>Panel pracownika</button>
                     <button *ngIf="!isAuthorized()" [routerLink]="'login'"  ngbDropdownItem>Zaloguj</button>
                     <button *ngIf="isAuthorized()" (click)="logout()"  ngbDropdownItem>Wyloguj</button>
                   </div>

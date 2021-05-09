@@ -8,6 +8,7 @@ import {AuthModule} from './modules/auth/auth.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpTokenInterceptor} from './core/interceptors/http-token.interceptor';
 import {EmployeeModule} from './modules/employee/employee.module';
+import {AccountModule} from './modules/account/account.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,6 +20,7 @@ import {EmployeeModule} from './modules/employee/employee.module';
     ClientModule,
     EmployeeModule,
     AuthModule,
+    AccountModule
   ],
   providers: [
     {

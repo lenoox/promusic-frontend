@@ -20,8 +20,9 @@
           <div *ngIf="isClient(); else employee">
             <button type="submit"
                     class="btn btn-primary  w-100"
-                    [disabled]="!this.isClient"
+                    [disabled]="product?.quantity==0"
                     (click)="setProduct(product?.id)">Dodaj do koszyka</button>
+            <a *ngIf="product?.quantity==0" class="text-danger">Brak w magazynie</a>
           </div>
           <ng-template #employee>
             <ng-container *ngIf="isEmployee(); else unauthorized">

@@ -50,8 +50,15 @@ export class UserService {
       );
   }
 
-  UpdateUser(id, data): Observable<User> {
-    return this.http.put<User>(this.baseurl + '/users/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateUser(data): Observable<HttpResponse<User>>  {
+    return this.http.put<User>(this.baseurl + '/users/me', JSON.stringify(data), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
+  }
+  UpdateUserPassword(data): Observable<HttpResponse<User>>  {
+    return this.http.put<User>(this.baseurl + '/users/me/password', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
