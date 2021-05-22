@@ -42,7 +42,12 @@
       <div class="col-md-12">
         <div class="card py-4 px-4 shadow-sm">
           <span class="card-text">
-            <quill-view [sanitize]="true" [content]="product?.description" format="html" theme="snow"></quill-view>
+            <quill-view
+              [sanitize]="true"
+              [content]="product?.description"
+              format="html"
+              theme="snow">
+            </quill-view>
           </span>
         </div>
       </div>
