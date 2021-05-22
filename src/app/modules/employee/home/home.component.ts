@@ -9,16 +9,8 @@ import {OrderService} from '../../../core/service/order.service';
 })
 export class HomeComponent implements OnInit {
 
-  ordersCount: number;
-
   constructor(private orderService: OrderService) {
   }
   ngOnInit(): void {
-    this.loadProduct();
-  }
-  loadProduct(): void{
-   /* this.orderService.GetOrders().subscribe((data: Order[]) => {
-      this.ordersCount = data.length;
-    });*/
   }
 }

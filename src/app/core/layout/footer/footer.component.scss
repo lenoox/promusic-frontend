@@ -1,4 +1,12 @@
 .footer{
+  &-list{
+    li{
+      line-height: 1.8rem;
+    }
+  }
+  &-contact{
+    line-height: 1.8rem;
+  }
   &-light{
     background: #E4E3E3;
   }

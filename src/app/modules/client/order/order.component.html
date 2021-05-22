@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row" *ngIf="!orderIsSuccessful">
         <div class="col-md-12 my-2">
-          <h3 class="card-text">Zamówienie</h3>
+          <h3 class="card-text mb-3">Zamówienie</h3>
         </div>
         <div class="col-md-9">
           <div class="card shadow-sm">
@@ -15,7 +15,7 @@
                 <thead>
                 <tr>
                   <th class="d-inline-block col-1" scope="col">#</th>
-                  <th class="d-inline-block col-2" scope="col">Zdjecie</th>
+                  <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
                   <th class="d-inline-block col-5" scope="col">Nazwa</th>
                   <th class="d-inline-block col-2" scope="col">Ilość</th>
                   <th class="d-inline-block col-2" scope="col">Cena</th>
@@ -27,7 +27,7 @@
                   <td class="d-inline-block col-2"><img src="{{ cart.product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
                   <td class="d-inline-block col-5">{{ cart.product?.name }}</td>
                   <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
-                  <td class="d-inline-block col-2">{{ cart.product?.price }}</td>
+                  <td class="d-inline-block col-2">{{ cart.product?.price | currency:'zł': true:'1.0'}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -36,26 +36,27 @@
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card py-4 px-4  shadow-sm">
+          <div class="card py-4 px-4 shadow-sm">
             <div *ngIf="getProductOrder.length > 0; else error">
-              <div class="text-right">Do zapłaty: <h4>{{getGrandTotal | currency:'zł': true:'1.0'}}</h4></div>
+              <div class="text-right">
+                <div class="mb-2">Do zapłaty: </div>
+                <h3>{{getGrandTotal | currency:'zł': true:'1.0'}}</h3>
+              </div>
             </div>
             <ng-template #error>Brak produktów w zamówieniu</ng-template>
           </div>
         </div>
         <div class="col-md-12 my-4 ">
           <div class="card p-4 shadow-sm">
-            <h3 class="card-text">Twoje dane</h3>
-            <div>
-              <p>Imie i nazwisko: {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
-              <p>Adres: {{userInfo?.address}} {{userInfo?.city}}</p>
-              <p>Numer kontaktowy: {{userInfo?.phoneNumber}}</p>
-            </div>
+            <h3 class="card-text mb-4">Twoje dane</h3>
+            <div class="my-2"><span class="font-weight-bold">Imie i nazwisko:</span> {{userInfo?.firstName}} {{userInfo?.lastName}}</div>
+            <div class="my-2"><span class="font-weight-bold">Adres:</span> {{userInfo?.address}} {{userInfo?.city}}</div>
+            <div class="my-2"><span class="font-weight-bold">Numer kontaktowy:</span> {{userInfo?.phoneNumber}}</div>
           </div>
         </div>
         <div class="col-md-12 my-4 ">
           <div class="card p-4 shadow-sm">
-            <h3 class="card-text">Twoja notatka do zamówienia</h3>
+            <h3 class="card-text mb-4">Twoja notatka do zamówienia</h3>
             <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" novalidate>
               <div class="form-group">
                 <label for="note" class="sr-only">Notatka</label>
@@ -63,7 +64,7 @@
               </div>
               <button type="submit" [disabled]="orderIsSuccessful || getProductOrder.length == 0" class="btn btn-primary w-100">Zamów</button>
               <div *ngIf="orderIsSuccessful==false" class="text-danger mt-2">
-                <ngb-alert [type]="'danger'">Wystąpił błąd, twoje zamówienie nie zostało złożone</ngb-alert>
+                <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd. Twoje zamówienie nie zostało złożone.</ngb-alert>
               </div>
             </form>
           </div>
@@ -75,10 +76,10 @@
         </div>
         <div class="col-md-12 my-2">
           <div class="text-success mt-2 w-100">
-            <ngb-alert [type]="'success'">Twoje zamówienie zostało złożone</ngb-alert>
+            <ngb-alert [dismissible]="false" [type]="'success'">Twoje zamówienie zostało złożone.</ngb-alert>
           </div>
           <p>Opłać zamówienie, wykonując przelew na podane konto. Po zaksięgowaniu płatności wyślemy zamówienie na twój adres.</p>
-          <p class="text-danger">Nr Konta bankowego:  <b>PL 0000 0001 0000 0000 0000 001C</b>.</p>
+          <p class="text-danger">Nr konta bankowego:  <b>PL 0000 0001 0000 0000 0000 001C</b>.</p>
           <h5 class="text-center">Dziękujemy, że z nami jesteś! </h5>
         </div>
       </div>

@@ -11,7 +11,7 @@
               <thead>
                 <tr>
                   <th class="d-inline-block col-1" scope="col">#</th>
-                  <th class="d-inline-block col-2" scope="col">Zdjecie</th>
+                  <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
                   <th class="d-inline-block col-5" scope="col">Nazwa</th>
                   <th class="d-inline-block col-2" scope="col">Ilość</th>
                   <th class="d-inline-block col-2" scope="col">Cena</th>
@@ -23,7 +23,7 @@
                   <td class="d-inline-block col-2"><img src="{{ cart?.product.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
                   <td class="d-inline-block col-5">{{ cart?.product.name }}</td>
                   <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
-                  <td class="d-inline-block col-2">{{ cart?.product.price }}</td>
+                  <td class="d-inline-block col-2">{{ cart?.product.price | currency:'zł': true:'1.0' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -33,17 +33,15 @@
       </div>
       <div class="col-md-12 mt-4">
         <div class="card p-4 shadow-sm">
-          <h3 class="card-text">Dane użytkownika</h3>
-          <div>
-            <p>Imie i nazwisko: {{order?.client.firstName}} {{order?.client.lastName}}</p>
-            <p>Adres: {{order?.client.address}} {{order?.client.city}}</p>
-            <p>Numer kontaktowy: {{order?.client.phoneNumber}}</p>
-          </div>
+          <h3 class="card-text mb-3">Dane użytkownika</h3>
+          <div class="my-2"><span class="font-weight-bold">Imie i nazwisko:</span> {{order?.client.firstName}} {{order?.client.lastName}}</div>
+          <div class="my-2"><span class="font-weight-bold">Adres:</span> {{order?.client.address}} {{order?.client.city}}</div>
+          <div class="my-2"><span class="font-weight-bold">Numer kontaktowy:</span> {{order?.client.phoneNumber}}</div>
         </div>
       </div>
       <div class="col-md-12 mt-4">
         <div class="card p-4 shadow-sm">
-          <h3 class="card-text">Twoja notatka do zamówienia</h3>
+          <h3 class="card-text mb-4">Twoja notatka do zamówienia</h3>
             <div class="form-group">
               <label for="note" class="sr-only">Notatka</label>
               <textarea rows="3" class="form-control" id="note" placeholder="Notatka do zamówienia" [value]="order?.note" disabled></textarea>
@@ -54,24 +52,34 @@
         <div class="container">
           <div class="row d-flex justify-content-lg-between">
             <div class="col-md-7 card mr-2 py-4 px-4  shadow-sm">
-                <div formGroupName="status" class="form-group col-md-6">
-                  <label for="statusInput">Status</label>
-                  <select formControlName="id" class="form-control" id="statusInput">
-                    <option *ngFor="let status of statusList" [value]="status.id">{{status?.name}}</option>
-                  </select>
+                <div formGroupName="status" class="form-group  row">
+                  <label class="col-sm-3 col-form-label" for="statusInput">Status</label>
+                  <div class="col-sm-9">
+                    <select formControlName="id" class="form-control" id="statusInput">
+                      <option *ngFor="let status of statusList" [value]="status.id">{{status?.name}}</option>
+                    </select>
+                  </div>
                   <div *ngIf="getControl.status.get('id').touched && getControl.status.get('id').invalid" class="text-danger">
-                    <div *ngIf="getControl.status.get('id').errors.required">Pole jest wymagane</div>
+                    <div *ngIf="getControl.status.get('id').errors.required">Pole jest wymagane.</div>
                   </div>
                 </div>
             </div>
-            <div class="col-md-4 card ml-2  py-4 px-4 shadow-sm">
+            <div class="col-md-4 card ml-2 py-4 px-4 shadow-sm">
               <div *ngIf="order?.productOrder.length > 0; else error">
-                <div class="text-right">Do zapłaty: <h4>{{order.grandTotal | currency:'zł': true:'1.0'}}</h4></div>
+                <div class="text-right">
+                  <div class="mb-2">Do zapłaty:</div>
+                  <h4>{{order.grandTotal | currency:'zł': true:'1.0'}}</h4></div>
               </div>
               <ng-template #error>Brak produktów w zamówieniu</ng-template>
             </div>
             <div class="col-md-12 d-flex justify-content-end py-4">
               <button type="submit" class="btn btn-primary">Zapisz</button>
+            </div>
+            <div *ngIf="isResponseOrderStatus" class="text-success w-100">
+              <ngb-alert [dismissible]="false" [type]="'success'">Status został zaktualizowany.</ngb-alert>
+            </div>
+            <div *ngIf="isResponseOrderStatus==false" class="text-danger w-100">
+              <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd. Status nie został zaktualizowany.</ngb-alert>
             </div>
           </div>
         </div>

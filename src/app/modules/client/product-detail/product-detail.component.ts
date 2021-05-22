@@ -13,6 +13,8 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 })
 export class ProductDetailComponent implements OnInit {
   product: Product;
+  isAddedProductToCart: boolean;
+  countProductAdded;
   constructor(
     private productService: ProductService,
     private cartService: CartLocalStorageService,
@@ -21,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.countProductAdded = 0;
     this.loadItem();
   }
   loadItem(): Subscription  {
@@ -33,6 +36,8 @@ export class ProductDetailComponent implements OnInit {
 
   setProduct(id): void{
     this.cartService.addProduct(id);
+    this.countProductAdded++;
+    this.isAddedProductToCart = true;
   }
   isEmployee(): boolean{
     return !!this.authenticationService.isEmployee();

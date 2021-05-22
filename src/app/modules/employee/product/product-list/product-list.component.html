@@ -13,7 +13,7 @@
         <thead>
         <tr>
           <th class="d-inline-block col-1" scope="col">#</th>
-          <th class="d-inline-block col-2" scope="col">Zdjecie</th>
+          <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
           <th class="d-inline-block col-6" scope="col">Nazwa</th>
           <th class="d-inline-block col-1" scope="col">Ilość</th>
           <th class="d-inline-block col-1" scope="col">Cena</th>
@@ -26,7 +26,7 @@
           <td class="d-inline-block col-2"><img src="{{ product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
           <td class="d-inline-block col-6">{{ product?.brand.name }} {{product?.name }}</td>
           <td class="d-inline-block col-1">{{ product?.quantity }}</td>
-          <td class="d-inline-block col-1">{{ product?.price }}</td>
+          <td class="d-inline-block col-1">{{ product?.price | currency:'zł': true:'1.0' }}</td>
           <td class="d-inline-block col-1" [routerLink]="['/employee/product/',product.id,'edit']">
           <span
             class="iconify"

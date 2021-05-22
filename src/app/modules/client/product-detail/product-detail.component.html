@@ -11,27 +11,32 @@
       </div>
       <div class="col-md-3">
         <div class="card py-4 px-4  shadow-sm">
-          <h3 class="text-right">{{product?.price| currency:'zł': true:'1.0'}}</h3>
-          <p class="text-right">Dostępność: {{product?.quantity}} sztuk</p>
-          <p class="text-right">Producent: {{product?.brand.name}}</p>
-          <p class="text-right">EAN-CODE: {{product?.eanCode}}</p>
-          <p class="text-right">Darmowa dostawa od 300zł</p>
+          <h3 class="mb-3">{{product?.price| currency:'zł': true:'1.0'}}</h3>
+          <div class="mb-1">Dostępność: <span class="font-weight-bold">{{product?.quantity}} sztuk</span></div>
+          <div class="mb-3">Darmowa dostawa od <span class="font-weight-bold">300 zł</span></div>
 
           <div *ngIf="isClient(); else employee">
             <button type="submit"
                     class="btn btn-primary  w-100"
                     [disabled]="product?.quantity==0"
                     (click)="setProduct(product?.id)">Dodaj do koszyka</button>
+            <div *ngIf="isAddedProductToCart" class="text-success mt-3">
+              <p>Dodano do koszyka {{countProductAdded}} razy</p>
+            </div>
             <a *ngIf="product?.quantity==0" class="text-danger">Brak w magazynie</a>
           </div>
           <ng-template #employee>
             <ng-container *ngIf="isEmployee(); else unauthorized">
-              <a *ngIf="isEmployee()" [routerLink]="'/login'">Aby kupić zaloguj sie jako klient</a>
+              <a *ngIf="isEmployee()" [routerLink]="'/login'">Aby kupić, zaloguj się jako klient.</a>
             </ng-container>
           </ng-template>
           <ng-template #unauthorized>
-            <a [routerLink]="'/login'">Aby kupić zaloguj sie</a>
+            <a [routerLink]="'/login'">Aby kupić, zaloguj się.</a>
           </ng-template>
+        </div>
+        <div class="card py-4 mt-3 px-4  shadow-sm">
+          <p><span class="font-weight-bold">Producent:</span> {{product?.brand.name}}</p>
+          <p><span class="font-weight-bold">EAN:</span> {{product?.eanCode}}</p>
         </div>
       </div>
       <div class="col-md-12">

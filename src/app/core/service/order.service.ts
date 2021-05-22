@@ -53,7 +53,7 @@ export class OrderService {
       );
   }
 
-  changeStatusByOrder(id, data): Observable<Order> {
+  changeStatusByOrder(id, data): Observable<HttpResponse<Order>> {
     return this.http.put<Order>(this.baseurl + '/order/' + id + '/status', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),

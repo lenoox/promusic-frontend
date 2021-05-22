@@ -1,22 +1,22 @@
 <section class="my-account d-flex h-100">
   <div class="container align-self-center w-100">
     <div class="row">
-      <div class="col-8 mx-auto">
-        <h3 class="my-3 text-center">Twoje dane</h3>
+      <div class="col-8 mx-auto mt-3">
+        <h2 class="my-3 text-center">Twoje dane</h2>
         <h3 class="my-3">Twoje hasło:</h3>
         <div *ngIf="isResponseUserPassword" class="text-success">
-          <ngb-alert [type]="'success'">Twoje hasło zostało zaktualizowane</ngb-alert>
+          <ngb-alert [dismissible]="false" [type]="'success'">Twoje hasło zostało zaktualizowane.</ngb-alert>
         </div>
         <div *ngIf="isResponseUserPassword==false" class="text-danger">
-          <ngb-alert [type]="'danger'">Wystąpił błąd, twoje hasło nie zostało zaktualizowane</ngb-alert>
+          <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd. Twoje hasło nie zostało zaktualizowane.</ngb-alert>
         </div>
-        <form [formGroup]="userPasswordForm" (ngSubmit)="onSubmitPassword()" novalidate>
+        <form class="mb-5" [formGroup]="userPasswordForm" (ngSubmit)="onSubmitPassword()" novalidate>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="oldPasswordInput">Stare Hasło</label>
-              <input formControlName="oldPassword" type="password" class="form-control" id="oldPasswordInput" placeholder="Stare Hasło">
+              <label for="oldPasswordInput">Stare hasło</label>
+              <input formControlName="oldPassword" type="password" class="form-control" id="oldPasswordInput" placeholder="Stare hasło">
               <div *ngIf="getControlPasswordForm.oldPassword.touched && getControlPasswordForm.oldPassword.invalid" class="text-danger">
-                <div *ngIf="getControlPasswordForm.oldPassword.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlPasswordForm.oldPassword.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -25,17 +25,17 @@
               <label for="newPasswordInput">Hasło</label>
               <input formControlName="newPassword" type="password" class="form-control" id="newPasswordInput" placeholder="Hasło">
               <div *ngIf="getControlPasswordForm.newPassword.touched && getControlPasswordForm.newPassword.invalid" class="text-danger">
-                <div *ngIf="getControlPasswordForm.newPassword.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlPasswordForm.newPassword.errors.required">Pole jest wymagane.</div>
               </div>
               <div *ngIf="(getControlPasswordForm.newPassword.touched ||getControlPasswordForm.confirmNewPassword.touched) && userPasswordForm.errors?.notEquivalent" class="text-danger">
-                <div *ngIf="userPasswordForm.errors?.notEquivalent">Hasła nie są takie same</div>
+                <div *ngIf="userPasswordForm.errors?.notEquivalent">Hasła nie są takie same.</div>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="confirmNewPasswordInput">Hasło</label>
               <input formControlName="confirmNewPassword" type="password" class="form-control" id="confirmNewPasswordInput" placeholder="Hasło">
               <div *ngIf="getControlPasswordForm.confirmNewPassword.touched && getControlPasswordForm.confirmNewPassword.invalid" class="text-danger">
-                <div *ngIf="getControlPasswordForm.confirmNewPassword.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlPasswordForm.confirmNewPassword.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -43,25 +43,25 @@
         </form>
         <h3 class="my-3">Dane osobowe:</h3>
         <div *ngIf="isResponseUserDetails" class="text-success">
-          <ngb-alert [type]="'success'">Twoje dane zostały zaktualizowane</ngb-alert>
+          <ngb-alert [dismissible]="false" [type]="'success'">Twoje dane zostały zaktualizowane.</ngb-alert>
         </div>
         <div *ngIf="isResponseUserDetails==false" class="text-danger">
-          <ngb-alert [type]="'danger'">Wystąpił błąd, twoje dane nie zostały zaktualizowane</ngb-alert>
+          <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd. Twoje dane nie zostały zaktualizowane.</ngb-alert>
         </div>
-        <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails()" novalidate>
+        <form class="mb-5" [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails()" novalidate>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstNameInput">Imię</label>
               <input formControlName="firstName" type="text" class="form-control" id="firstNameInput"  placeholder="Imię">
               <div *ngIf="getControlUserDetailsForm.firstName.touched && getControlUserDetailsForm.firstName.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.firstName.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.firstName.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="lastNameInput">Nazwisko</label>
               <input formControlName="lastName" type="text" class="form-control" id="lastNameInput"  placeholder="Nazwisko">
               <div *ngIf="getControlUserDetailsForm.lastName.touched && getControlUserDetailsForm.lastName.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.lastName.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.lastName.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
               <label for="phoneNumberInput">Numer telefonu</label>
               <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumberInput" placeholder="Numer telefonu">
               <div *ngIf="getControlUserDetailsForm.phoneNumber.touched && getControlUserDetailsForm.phoneNumber.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.phoneNumber.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.phoneNumber.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -79,14 +79,14 @@
               <label for="addressInput">Adres</label>
               <input formControlName="address" type="text" class="form-control" id="addressInput" placeholder="Adres">
               <div *ngIf="getControlUserDetailsForm.address.touched && getControlUserDetailsForm.address.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.address.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.address.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="cityInput">Miasto</label>
               <input formControlName="city" type="text" class="form-control" id="cityInput" placeholder="Miasto">
               <div *ngIf="getControlUserDetailsForm.city.touched && getControlUserDetailsForm.city.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.city.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.city.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
               <label for="passwordInput">Hasło</label>
               <input formControlName="password" type="password" class="form-control" id="passwordInput" placeholder="Hasło">
               <div *ngIf="getControlUserDetailsForm.password.touched && getControlUserDetailsForm.password.invalid" class="text-danger">
-                <div *ngIf="getControlUserDetailsForm.password.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControlUserDetailsForm.password.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>

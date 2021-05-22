@@ -15,6 +15,7 @@ export class OrderDetailComponent implements OnInit {
   order: Order;
   statusForm: FormGroup;
   statusList: Status[];
+  isResponseOrderStatus: boolean;
   constructor(
     private formBuilder: FormBuilder,
     private orderService: OrderService,
@@ -36,8 +37,12 @@ export class OrderDetailComponent implements OnInit {
     const id = +this.route.snapshot.params.id;
     if (this.statusForm.value) {
       this.orderService.changeStatusByOrder(id, this.statusForm.value)
-        .subscribe(() => {
+        .subscribe((resp) => {
+          if (resp.status === 200){
+            this.isResponseOrderStatus = true;
+          }
         }, (err: any) => {
+          this.isResponseOrderStatus = false;
           console.log(err);
         });
     }

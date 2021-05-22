@@ -9,7 +9,7 @@
               <label for="nameInput">Nazwa</label>
               <input formControlName="name" type="text" class="form-control" id="nameInput"  placeholder="Nazwa">
               <div *ngIf="getControl.name.touched && getControl.name.invalid" class="text-danger">
-                <div *ngIf="getControl.name.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.name.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -18,14 +18,14 @@
               <label for="priceInput">Cena</label>
               <input formControlName="price" type="text" class="form-control" id="priceInput" placeholder="Cena">
               <div *ngIf="getControl.price.touched && getControl.price.invalid" class="text-danger">
-                <div *ngIf="getControl.price.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.price.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="quantityInput">Ilosć w magzynie</label>
-              <input formControlName="quantity" type="text" class="form-control" id="quantityInput" placeholder="Ilosć w magzynie">
+              <label for="quantityInput">Ilosć w magazynie</label>
+              <input formControlName="quantity" type="text" class="form-control" id="quantityInput" placeholder="Ilosć w magazynie">
               <div *ngIf="getControl.quantity.touched && getControl.quantity.invalid" class="text-danger">
-                <div *ngIf="getControl.quantity.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.quantity.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
                 <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
               </select>
               <div *ngIf="getControl.category.touched && getControl.category.invalid" class="text-danger">
-                <div *ngIf="getControl.category.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.category.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div formGroupName="brand" class="form-group col-md-6">
@@ -45,17 +45,17 @@
                 <option *ngFor="let brand of brandList" [value]="brand.id">{{brand.name}}</option>
               </select>
               <div *ngIf="getControl.brand.touched && getControl.brand.invalid" class="text-danger">
-                <div *ngIf="getControl.brand.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.brand.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="thumbnailInput">Adres zdjecia produktu</label>
-              <input formControlName="thumbnail" type="text" class="form-control" id="thumbnailInput"  placeholder="Zdjecie">
+              <input formControlName="thumbnail" type="text" class="form-control" id="thumbnailInput"  placeholder="Zdjęcie">
 
               <div *ngIf="getControl.thumbnail.touched && getControl.thumbnail.invalid" class="text-danger">
-                <div *ngIf="getControl.thumbnail.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.thumbnail.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
               <label for="eanCodeInput">Kod EAN produktu</label>
               <input formControlName="eanCode" type="text" class="form-control" id="eanCodeInput"  placeholder="EAN produktu">
               <div *ngIf="getControl.eanCode.touched && getControl.eanCode.invalid" class="text-danger">
-                <div *ngIf="getControl.eanCode.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.eanCode.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
               <label for="descriptionTextarea">Opis produktu</label>
               <app-text-editor class="text-editor" [control]="descriptionControl" id="descriptionTextarea"></app-text-editor>
               <div *ngIf="getControl.description.touched && getControl.description.invalid" class="text-danger">
-                <div *ngIf="getControl.description.errors.required">Pole jest wymagane</div>
+                <div *ngIf="getControl.description.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>
@@ -81,10 +81,10 @@
             <div class="form-group col-md-12">
               <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary w-100">{{editMode? 'Zapisz produkt' : 'Dodaj produkt'}}</button>
               <div *ngIf="responseMessage" class="text-success my-2">
-                <ngb-alert [type]="'success'">{{editMode? 'Zapisano produkt' : 'Dodano produkt'}}</ngb-alert>
+                <ngb-alert [dismissible]="false" [type]="'success'">{{editMode? 'Zapisano produkt' : 'Dodano produkt'}}.</ngb-alert>
               </div>
               <div *ngIf="responseMessage==false" class="text-danger my-2">
-                <ngb-alert [type]="'danger'">Wystąpił błąd</ngb-alert>
+                <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd.</ngb-alert>
               </div>
             </div>
           </div>
