@@ -8,7 +8,7 @@
     </button>
   </div>
   <div class="container">
-    <div class="table-responsive">
+    <div class="table-responsive" *ngIf="productList.length > 0; else error">
       <table class="table table-striped">
         <thead>
         <tr>
@@ -39,7 +39,7 @@
         </tr>
         </tbody>
       </table>
-      <div *ngIf="productList.length > 0; else error">
+      <div>
         <ngb-pagination
           [collectionSize]="totalElements"
           [(page)]="page"
@@ -47,7 +47,7 @@
           aria-label="pagination"
           class="d-flex justify-content-end"></ngb-pagination>
       </div>
-      <ng-template #error><div class="text-center">Brak produktów</div></ng-template>
     </div>
+    <ng-template #error><div class="text-center">Brak produktów</div></ng-template>
   </div>
 </section>
