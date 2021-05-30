@@ -4,13 +4,14 @@ import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Order } from '../../shared/model/order';
 import {Page} from '../../shared/model/page';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  baseurl = 'http://localhost:8080';
+  baseurl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
   httpOptions: {

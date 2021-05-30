@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080',
-  pathUploads: 'http://localhost:4200/assets/img/uploads/'
+  apiUrl: 'http://localhost:8080/',
+  oauthSecret: '4?kf&5&3Z@ghZ4$%'
 };
 
 /*

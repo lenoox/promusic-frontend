@@ -5,10 +5,11 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {User} from '../../shared/model/user';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
-const OAUTH_CLIENT = 'devglan-client';
-const OAUTH_SECRET = 'devglan-secret';
-const API_URL = 'http://localhost:8080/';
+const OAUTH_CLIENT = 'pro-music-user';
+const OAUTH_SECRET = environment.oauthSecret;
+
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -21,6 +22,7 @@ const HTTP_OPTIONS = {
 export class AuthenticationService {
   role = null;
   authorized = false;
+  baseurl = environment.apiUrl;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -44,7 +46,7 @@ export class AuthenticationService {
       .set('password', loginData.password)
       .set('grant_type', 'password');
 
-    return this.http.post<any>(API_URL + 'oauth/token', body, HTTP_OPTIONS)
+    return this.http.post<any>(this.baseurl + 'oauth/token', body, HTTP_OPTIONS)
       .pipe(
         tap(res => {
           this.tokenService.saveToken(res.access_token);
@@ -55,7 +57,7 @@ export class AuthenticationService {
       );
   }
   getUserInfo(): Promise<User> {
-    return this.http.get<any>(API_URL + 'users/me').pipe(tap(user => {
+    return this.http.get<any>(this.baseurl + 'users/me').pipe(tap(user => {
       this.role = user.role.name;
       this.authorized = true;
     })).toPromise();
@@ -66,7 +68,7 @@ export class AuthenticationService {
     const body = new HttpParams()
       .set('refresh_token', refreshData.refresh_token)
       .set('grant_type', 'refresh_token');
-    return this.http.post<any>(API_URL + 'oauth/token', body, HTTP_OPTIONS)
+    return this.http.post<any>(this.baseurl + 'oauth/token', body, HTTP_OPTIONS)
       .pipe(
         tap(res => {
           this.tokenService.saveToken(res.access_token);

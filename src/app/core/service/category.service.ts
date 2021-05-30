@@ -3,12 +3,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Category} from '../../shared/model/category';
+import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  baseurl = 'http://localhost:8080';
+  baseurl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

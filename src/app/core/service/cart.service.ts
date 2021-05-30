@@ -4,13 +4,14 @@ import {Product} from '../../shared/model/product';
 import {catchError, retry} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Cart} from '../../shared/model/cart';
+import {environment} from '../../../environments/environment';
 
 const CART = 'cart_token';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  baseurl = 'http://localhost:8080';
+  baseurl = environment.apiUrl;
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
