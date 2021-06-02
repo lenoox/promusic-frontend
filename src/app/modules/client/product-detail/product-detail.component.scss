@@ -3,3 +3,6 @@
   @include min-height;
   background-color: #FAFAFA;
 }
+:host quill-view ::ng-deep .ql-container{
+  font-size: 16px;
+}

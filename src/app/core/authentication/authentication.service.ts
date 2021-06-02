@@ -46,7 +46,7 @@ export class AuthenticationService {
       .set('password', loginData.password)
       .set('grant_type', 'password');
 
-    return this.http.post<any>(this.baseurl + 'oauth/token', body, HTTP_OPTIONS)
+    return this.http.post<any>(this.baseurl + '/oauth/token', body, HTTP_OPTIONS)
       .pipe(
         tap(res => {
           this.tokenService.saveToken(res.access_token);
@@ -57,7 +57,7 @@ export class AuthenticationService {
       );
   }
   getUserInfo(): Promise<User> {
-    return this.http.get<any>(this.baseurl + 'users/me').pipe(tap(user => {
+    return this.http.get<any>(this.baseurl + '/users/me').pipe(tap(user => {
       this.role = user.role.name;
       this.authorized = true;
     })).toPromise();
@@ -68,7 +68,7 @@ export class AuthenticationService {
     const body = new HttpParams()
       .set('refresh_token', refreshData.refresh_token)
       .set('grant_type', 'refresh_token');
-    return this.http.post<any>(this.baseurl + 'oauth/token', body, HTTP_OPTIONS)
+    return this.http.post<any>(this.baseurl + '/oauth/token', body, HTTP_OPTIONS)
       .pipe(
         tap(res => {
           this.tokenService.saveToken(res.access_token);
