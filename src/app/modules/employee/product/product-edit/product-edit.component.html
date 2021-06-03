@@ -22,8 +22,8 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="quantityInput">Ilosć w magazynie</label>
-              <input formControlName="quantity" type="text" class="form-control" id="quantityInput" placeholder="Ilosć w magazynie">
+              <label for="quantityInput">Ilość w magazynie</label>
+              <input formControlName="quantity" type="text" class="form-control" id="quantityInput" placeholder="Ilość w magazynie">
               <div *ngIf="getControl.quantity.touched && getControl.quantity.invalid" class="text-danger">
                 <div *ngIf="getControl.quantity.errors.required">Pole jest wymagane.</div>
               </div>
@@ -51,7 +51,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="thumbnailInput">Adres zdjecia produktu</label>
+              <label for="thumbnailInput">Adres zdjęcia produktu</label>
               <input formControlName="thumbnail" type="text" class="form-control" id="thumbnailInput"  placeholder="Zdjęcie">
 
               <div *ngIf="getControl.thumbnail.touched && getControl.thumbnail.invalid" class="text-danger">
