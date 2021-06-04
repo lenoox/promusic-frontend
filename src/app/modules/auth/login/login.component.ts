@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginUserForm: FormGroup;
+  responseMessage;
   constructor(public formBuilder: FormBuilder,
               private router: Router,
               private authenticationService: AuthenticationService,
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
       .subscribe(() => {
        this.router.navigate(['.']).then(_ => {});
       }, (err: any) => {
+        this.responseMessage = false;
         console.log(err);
       });
   }

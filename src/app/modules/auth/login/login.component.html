@@ -4,6 +4,9 @@
       <div class="col-4 mx-auto text-center">
         <h3 class="my-3">Logowanie</h3>
         <form [formGroup]="loginUserForm" (ngSubmit)="onSubmit()" novalidate>
+          <div *ngIf="responseMessage==false" class="text-success">
+            <ngb-alert [dismissible]="false" [type]="'danger'">Wystąpił błąd.</ngb-alert>
+          </div>
           <div class="form-group">
             <label for="emailInput" class="sr-only">Adres e-mail</label>
             <input formControlName="username" type="email" class="form-control" id="emailInput" placeholder="Adres e-mail" aria-describedby="emailHelp">
