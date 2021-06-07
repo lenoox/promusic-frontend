@@ -18,7 +18,7 @@
       <td class="d-inline-block col-2">{{ order.grandTotal | currency:'zł': true:'1.0'}}</td>
       <td class="d-inline-block col-2" [routerLink]="['/employee/order',order.id]">
       <span
-        class="iconify"
+        class="iconify pointer"
         data-icon="clarity:note-edit-line"
         data-inline="false"
         data-width="30px"
@@ -32,5 +32,5 @@
       (pageChange)="loadProduct()"
       aria-label="pagination"></ngb-pagination>
   </table>
-  <ng-template #error ><div class="text-center">Brak zamówień</div></ng-template>
+  <ng-template #error ><div class="text-center">Brak zamówień.</div></ng-template>
 </section>
