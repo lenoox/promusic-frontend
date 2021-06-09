@@ -21,7 +21,7 @@
                 <tr *ngFor="let cart of order?.productOrder; index as i">
                   <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
                   <td class="d-inline-block col-2"><img src="{{ cart?.product.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
-                  <td class="d-inline-block col-5">{{ cart?.product.name }}</td>
+                  <td class="d-inline-block col-5">{{ cart?.product.brand.name }} {{ cart?.product.name }}</td>
                   <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
                   <td class="d-inline-block col-2">{{ cart?.product.price | currency:'zł': true:'1.0' }}</td>
                 </tr>
