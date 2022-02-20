@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Brand} from '../../shared/model/Brand';
+import {Brand} from '../../shared/model/brand';
 import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -71,7 +71,6 @@ export class BrandService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 }

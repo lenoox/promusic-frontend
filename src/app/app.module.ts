@@ -1,8 +1,8 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import '@angular/common/locales/global/pl';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {ClientModule} from './modules/client/client.module';
 import {AuthModule} from './modules/auth/auth.module';
@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpTokenInterceptor} from './core/interceptors/http-token.interceptor';
 import {EmployeeModule} from './modules/employee/employee.module';
 import {AccountModule} from './modules/account/account.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -36,4 +37,5 @@ import {AccountModule} from './modules/account/account.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

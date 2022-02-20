@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/service/user.service';
-
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-register',
@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
   matcher;
   registerUserForm: FormGroup;
   responseMessage;
+  registerActive = environment.registerActive;
+
   constructor(public formBuilder: FormBuilder,
               private userService: UserService) {
   }
@@ -33,24 +35,23 @@ export class RegisterComponent implements OnInit {
     return this.registerUserForm.controls;
   }
   onSubmit(): void{
-    delete this.registerUserForm.value.confirmPassword;
-    console.log(this.registerUserForm);
-    this.userService.CreateUser(this.registerUserForm.value).subscribe(resp => {
-     if(resp.status === 200){
-       console.log(resp);
-       console.log(resp.status);
-       console.log(resp.body);
-       this.responseMessage = true;
-     }
-    }, err => {
-      this.responseMessage = false;
-    });
+    if(this.registerActive){
+      delete this.registerUserForm.value.confirmPassword;
+      console.log(this.registerUserForm);
+      this.userService.CreateUser(this.registerUserForm.value).subscribe(resp => {
+        if(resp.status === 200){
+          this.responseMessage = true;
+        }
+      }, err => {
+        this.responseMessage = false;
+      });
+    } else{
+      console.log("Registration is disabled")
+    }
   }
   passwordConfirming(form: FormGroup): { notEquivalent: boolean } {
-
      if (form.get('password').value !== form.get('confirmPassword').value) {
       return {notEquivalent: true};
     }
   }
-
 }

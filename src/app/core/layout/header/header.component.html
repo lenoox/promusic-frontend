@@ -1,4 +1,13 @@
 <nav class="header">
+  <section>
+    <ngb-alert [dismissible]="false" class="d-flex justify-content-center align-items-center">
+      <span class="iconify header-warning" data-icon="ant-design:warning-outlined"></span>
+      <div class="d-flex flex-column ml-3">
+        <span class="">Jest to tylko <strong>wersja demonstracyjna</strong> strony sklepu internetowego. <strong>Nie podawaj żadnych danych osobistych!</strong></span>
+        <span class="mt-1">This is only a <strong>demo version</strong> of the online store website. <strong>Do not enter any personal information!</strong></span>
+      </div>
+    </ngb-alert>
+  </section>
   <section class="navbar navbar-light header-main">
     <div class="container">
       <a class="navbar-brand" [routerLink]="'.'">ProMusic</a>
@@ -50,3 +59,4 @@
     </div>
   </section>
 </nav>
+

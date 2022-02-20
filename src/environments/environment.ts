@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080',
-  oauthSecret: '4?kf&5&3Z@ghZ4$%'
+  apiUrl: window["env"]["apiUrl"],
+  oauthSecret: window["env"]["oauthSecret"],
+  registerActive: false
 };
 
 /*

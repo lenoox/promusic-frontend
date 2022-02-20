@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Status} from '../../shared/model/Status';
+import {Status} from '../../shared/model/status';
 import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -72,7 +72,6 @@ export class StatusService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 }

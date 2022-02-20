@@ -1,0 +1,46 @@
+@import '~src/variables.scss';
+.bg-spinner{
+  background-color: rgb(255, 255, 255);
+  z-index: 999;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  color: black;
+}
+.spinner-container{
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+}
+.spinner {
+  z-index: 1000;
+  width: 80px;
+  height: 80px;
+}
+.spinner:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid $accent-color;
+  border-color: $accent-color transparent $accent-color transparent;
+  animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

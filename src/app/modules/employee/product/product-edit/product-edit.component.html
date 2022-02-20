@@ -35,8 +35,8 @@
               <select formControlName="id" class="form-control" id="categoryInput">
                 <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
               </select>
-              <div *ngIf="getControl.category.touched && getControl.category.invalid" class="text-danger">
-                <div *ngIf="getControl.category.errors.required">Pole jest wymagane.</div>
+              <div *ngIf="getControl.category?.touched && getControl.category?.invalid" class="text-danger">
+                <div *ngIf="getControl.category.errors?.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div formGroupName="brand" class="form-group col-md-6">
@@ -44,8 +44,8 @@
               <select formControlName="id" class="form-control" id="brandInput">
                 <option *ngFor="let brand of brandList" [value]="brand.id">{{brand.name}}</option>
               </select>
-              <div *ngIf="getControl.brand.touched && getControl.brand.invalid" class="text-danger">
-                <div *ngIf="getControl.brand.errors.required">Pole jest wymagane.</div>
+              <div *ngIf="getControl.brand?.touched && getControl.brand?.invalid" class="text-danger">
+                <div *ngIf="getControl.brand.errors?.required">Pole jest wymagane.</div>
               </div>
             </div>
           </div>

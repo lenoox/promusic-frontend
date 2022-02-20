@@ -1,0 +1,111 @@
+name: promusic-frontend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testing-code-build:
+    name: 'Testing code build'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build:prod
+  deploy-test:
+    name: 'Deploy TEST Server'
+    needs: [testing-code-build]
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}-test:latest
+      PROFILE_ACTIVE: test
+      API_URL: ${{ secrets.API_TEST_URL }}
+      OAUTH_SECRET: ${{ secrets.OAUTH_SECRET }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+      - name: 'Auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: 'Authorize Docker push'
+        run: 'gcloud auth configure-docker --quiet'
+      - name: 'Build Docker image'
+        run: 'docker build . -t $IMAGE_NAME --build-arg PROFILE_ACTIVE=$PROFILE_ACTIVE'
+      - name: 'Test Docker image'
+        run: 'docker run -e API_URL=$API_URL -e OAUTH_SECRET=$OAUTH_SECRET -d -p 80:80 $IMAGE_NAME'
+      - name: 'Push Docker image'
+        run: 'docker push $IMAGE_NAME'
+      - name: 'Deploy Docker image'
+        run: |
+          gcloud run deploy ${{ secrets.GCP_APP_NAME }}-test \
+          --image $IMAGE_NAME \
+          --region ${{ secrets.GCP_REGION}} \
+          --platform managed \
+          --min-instances ${{ secrets.GCP_MIN_INSTANCES }} \
+          --max-instances ${{ secrets.GCP_MAX_INSTANCES }} \
+          --concurrency ${{ secrets.GCP_CONCURRENCY }} \
+          --port 80 \
+          --cpu ${{ secrets.GCP_CPU }} \
+          --memory ${{ secrets.GCP_MEMORY }} \
+          --allow-unauthenticated \
+          --set-env-vars=API_URL=$API_URL \
+          --set-env-vars=OAUTH_SECRET=$OAUTH_SECRET
+  deploy-prod:
+    name: 'Deploy PROD Server'
+    needs: [testing-code-build]
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:latest
+      PROFILE_ACTIVE: prod
+      API_URL: ${{ secrets.API_PROD_URL }}
+      OAUTH_SECRET: ${{ secrets.OAUTH_SECRET }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+      - name: 'Auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: 'Authorize Docker push'
+        run: 'gcloud auth configure-docker --quiet'
+      - name: 'Build Docker image'
+        run: 'docker build . -t $IMAGE_NAME --build-arg PROFILE_ACTIVE=$PROFILE_ACTIVE'
+      - name: 'Test Docker image'
+        run: 'docker run -e API_URL=$API_URL -e OAUTH_SECRET=$OAUTH_SECRET -d -p 80:80 $IMAGE_NAME'
+      - name: 'Push Docker image'
+        run: 'docker push $IMAGE_NAME'
+      - name: 'Deploy Docker image'
+        run: |
+          gcloud run deploy ${{ secrets.GCP_APP_NAME }} \
+          --image $IMAGE_NAME \
+          --region ${{ secrets.GCP_REGION}} \
+          --platform managed \
+          --min-instances ${{ secrets.GCP_MIN_INSTANCES }} \
+          --max-instances ${{ secrets.GCP_MAX_INSTANCES }} \
+          --concurrency ${{ secrets.GCP_CONCURRENCY }} \
+          --port 80 \
+          --cpu ${{ secrets.GCP_CPU }} \
+          --memory ${{ secrets.GCP_MEMORY }} \
+          --allow-unauthenticated \
+          --set-env-vars=API_URL=$API_URL \
+          --set-env-vars=OAUTH_SECRET=$OAUTH_SECRET

@@ -24,7 +24,6 @@ export class ClientGuard implements CanActivate {
       } else {
         this.authenticationService.getUserInfo().then(user => {
           if (user.role.name === 'USER') {
-            console.log('user');
             resolve(true);
           } else {
             console.log('NOT Authorized');

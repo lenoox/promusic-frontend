@@ -35,7 +35,7 @@
             ]
           },
           "configurations": {
-            "production": {
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -61,6 +61,51 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "statsJson": false,
+              "progress": true,
+              "vendorChunk": true,
+              "buildOptimizer": false
             }
           }
         },
@@ -70,9 +115,15 @@
             "browserTarget": "promusic:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "promusic:build:production"
-            }
+            "prod": {
+              "browserTarget": "promusic:build:prod"
+            },
+            "test": {
+              "browserTarget": "promusic:build:test"
+            },
+            "dev": {
+              "browserTarget": "promusic:build:dev"
+            },
           }
         },
         "extract-i18n": {
@@ -120,8 +171,14 @@
             "devServerTarget": "promusic:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "promusic:serve:production"
+            "prod": {
+              "devServerTarget": "promusic:serve:prod"
+            },
+            "test": {
+              "devServerTarget": "promusic:serve:test"
+            },
+            "dev": {
+              "devServerTarget": "promusic:serve:dev"
             }
           }
         }
