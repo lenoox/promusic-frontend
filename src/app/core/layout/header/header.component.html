@@ -49,8 +49,8 @@
       <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
         &#9776;
       </button>
-      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-center">
-        <ul class="navbar-nav ">
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-center mt-3 mt-lg-0">
+        <ul class="navbar-nav">
           <li *ngFor="let category of categoryMenu" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/category',category?.slug]" (click)="isMenuCollapsed = true">{{category?.name}}</a>
           </li>
