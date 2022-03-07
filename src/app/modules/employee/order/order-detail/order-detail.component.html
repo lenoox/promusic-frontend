@@ -50,8 +50,8 @@
       </div>
       <form class="col-md-12 pt-4" [formGroup]="statusForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="container">
-          <div class="row d-flex justify-content-lg-between">
-            <div class="col-md-7 card mr-2 py-4 px-4  shadow-sm">
+          <div class="row d-flex justify-content-md-between">
+            <div class="col-md-7 card mr-md-2 py-4 px-4 shadow-sm">
                 <div formGroupName="status" class="form-group  row">
                   <label class="col-sm-3 col-form-label" for="statusInput">Status</label>
                   <div class="col-sm-9">
@@ -64,7 +64,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-4 card ml-2 py-4 px-4 shadow-sm">
+            <div class="col-md-4 card ml-md-2 mt-4 mt-md-0 py-4 px-4 shadow-sm">
               <div *ngIf="order?.productOrder.length > 0; else error">
                 <div class="text-right">
                   <div class="mb-2">Do zapłaty:</div>

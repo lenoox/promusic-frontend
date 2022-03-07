@@ -12,22 +12,22 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th class="d-inline-block col-1" scope="col">#</th>
-          <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
-          <th class="d-inline-block col-6" scope="col">Nazwa</th>
-          <th class="d-inline-block col-1" scope="col">Ilość</th>
-          <th class="d-inline-block col-1" scope="col">Cena</th>
-          <th class="d-inline-block col-1" scope="col">Akcja</th>
+          <th scope="col">#</th>
+          <th scope="col">Zdjęcie</th>
+          <th scope="col">Nazwa</th>
+          <th scope="col">Ilość</th>
+          <th scope="col">Cena</th>
+          <th scope="col">Akcja</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let product of productList; index as i">
-          <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
-          <td class="d-inline-block col-2"><img src="{{ product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
-          <td class="d-inline-block col-6">{{ product?.brand.name }} {{product?.name }}</td>
-          <td class="d-inline-block col-1">{{ product?.quantity }}</td>
-          <td class="d-inline-block col-1">{{ product?.price | currency:'zł': true:'1.0' }}</td>
-          <td class="d-inline-block col-1" [routerLink]="['/employee/product/',product.id,'edit']">
+          <th scope="row">{{ i + 1 }}</th>
+          <td><img src="{{ product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
+          <td>{{ product?.brand.name }} {{product?.name }}</td>
+          <td>{{ product?.quantity }}</td>
+          <td>{{ product?.price | currency:'zł': true:'1.0' }}</td>
+          <td [routerLink]="['/employee/product/',product.id,'edit']">
           <span
             class="iconify pointer"
             data-icon="clarity:note-edit-line"

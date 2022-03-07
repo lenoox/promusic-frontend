@@ -1,14 +1,14 @@
 <section class="employee">
   <div class="container">
-    <div class="row">
-      <div class="col-3">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="col-12 col-lg-3">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/employee/home']">Panel główny</a>
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/employee/order']">Zamówienia</a>
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/employee/product']">Produkty</a>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-12 col-lg-9 mt-3">
         <div class="tab-content" id="v-pills-tabContent">
           <router-outlet></router-outlet>
           <div class="tab-pane fade show active" id="v-pills-home"></div>

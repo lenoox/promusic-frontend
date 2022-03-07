@@ -3,7 +3,7 @@
   @include min-height;
 }
 .cart-thumbnail{
-  width:20vh;
+  max-width:20vh;
 }
 .cart-inline-block{
   display: inline
@@ -11,9 +11,7 @@
 .icon{
   background: rgba(255, 255, 255, 0);
   border: rgba(255, 255, 255, 0);
-  width: 30px;
-  height: 30px;
 }
 .cart-transparent{
-opacity: 15%;
+  opacity: 15%;
 }

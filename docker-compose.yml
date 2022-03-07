@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  promusic-www:
+    image: ${COMPOSE_PROJECT_NAME}-www
+    container_name: ${COMPOSE_PROJECT_NAME}-www
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        PROFILE_ACTIVE: dev
+    env_file:
+      - .env
+    ports:
+      - '80:80'
+    networks:
+      - promusic
+networks:
+  promusic:
+    external:
+      name: promusic
