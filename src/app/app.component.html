@@ -3,7 +3,7 @@
     <div class="bg-spinner d-flex justify-content-center align-items-center flex-column">
       <div class="spinner"></div>
       <div *ngIf="loadingService.getIsErrorMsg();then errorMsg else waitMsg"></div>
-      <ng-template #waitMsg><p class="spinner-text">Strona musi się załadować, poczekaj chwilę.</p></ng-template>
+      <ng-template #waitMsg><p class="spinner-text">Ładowanie, proszę czekać...</p></ng-template>
       <ng-template #errorMsg><p class="spinner-text">Wystąpił błąd, spróbuj później.</p></ng-template>
     </div>
   </div>

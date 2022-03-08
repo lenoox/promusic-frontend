@@ -1,7 +1,7 @@
 @import '~src/variables.scss';
 .bg-spinner{
   background-color: rgb(255, 255, 255);
-  z-index: 999;
+  z-index: 1998;
   position:absolute;
   top:0;
   left:0;
@@ -13,7 +13,7 @@
 }
 .spinner-container{
   position: fixed;
-  z-index: 998;
+  z-index: 1997;
   top: 0;
   left: 0;
   right: 0;
@@ -21,7 +21,7 @@
 
 }
 .spinner {
-  z-index: 1000;
+  z-index: 1999;
   width: 80px;
   height: 80px;
 }

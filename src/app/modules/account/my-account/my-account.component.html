@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-8 mx-auto mt-3">
         <h2 class="my-3 text-center">Twoje dane</h2>
-        <h3 class="my-3">Twoje hasło:</h3>
+        <h3 class="my-3">Zmiana hasła:</h3>
         <div *ngIf="isResponseUserPassword" class="text-success">
           <ngb-alert [dismissible]="false" [type]="'success'">Twoje hasło zostało zaktualizowane.</ngb-alert>
         </div>
@@ -39,9 +39,12 @@
               </div>
             </div>
           </div>
-          <button type="submit" [disabled]="!userPasswordForm.valid" class="btn btn-primary w-100">Zmień hasło</button>
+          <button type="submit" [disabled]="!userPasswordForm.valid || demoActive" class="btn btn-primary w-100">Zmień hasło</button>
+          <div *ngIf="demoActive" class="text-danger text-center my-2">
+            <div>Zmiana hasła została wyłączona w trybie demo.</div>
+          </div>
         </form>
-        <h3 class="my-3">Dane osobowe:</h3>
+        <h3 class="my-3">Zaktualizuj swoje dane:</h3>
         <div *ngIf="isResponseUserDetails" class="text-success">
           <ngb-alert [dismissible]="false" [type]="'success'">Twoje dane zostały zaktualizowane.</ngb-alert>
         </div>

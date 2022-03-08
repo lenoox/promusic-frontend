@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   matcher;
   registerUserForm: FormGroup;
   responseMessage;
-  registerActive = environment.registerActive;
+  demoActive = environment.demoActive;
 
   constructor(public formBuilder: FormBuilder,
               private userService: UserService) {
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     return this.registerUserForm.controls;
   }
   onSubmit(): void{
-    if(this.registerActive){
+    if(this.demoActive){
       delete this.registerUserForm.value.confirmPassword;
       console.log(this.registerUserForm);
       this.userService.CreateUser(this.registerUserForm.value).subscribe(resp => {
