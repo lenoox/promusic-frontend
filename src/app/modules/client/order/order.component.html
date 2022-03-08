@@ -11,20 +11,20 @@
               <table class="table table-striped margin-0">
                 <thead>
                 <tr>
-                  <th class="d-inline-block col-1" scope="col">#</th>
-                  <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
-                  <th class="d-inline-block col-5" scope="col">Nazwa</th>
-                  <th class="d-inline-block col-2" scope="col">Ilość</th>
-                  <th class="d-inline-block col-2" scope="col">Cena</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Zdjęcie</th>
+                  <th scope="col">Nazwa</th>
+                  <th scope="col">Ilość</th>
+                  <th scope="col">Cena</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let cart of getProductOrder; index as i">
-                  <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
-                  <td class="d-inline-block col-2"><img src="{{ cart.product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
-                  <td class="d-inline-block col-5">{{ cart?.product.brand.name }} {{ cart.product?.name }}</td>
-                  <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
-                  <td class="d-inline-block col-2">{{ cart.product?.price | currency:'zł': true:'1.0'}}</td>
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td><img src="{{ cart.product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
+                  <td>{{ cart?.product.brand.name }} {{ cart.product?.name }}</td>
+                  <td>{{ cart?.quantity }}</td>
+                  <td>{{ cart.product?.price | currency:'zł': true:'1.0'}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -72,10 +72,12 @@
           <h3 class="card-text">Zamówienie</h3>
         </div>
         <div class="col-md-12 my-2">
-          <div class="text-success mt-2 w-100">
-            <ngb-alert [dismissible]="false" [type]="'success'">Twoje zamówienie zostało złożone.</ngb-alert>
+          <div class="mt-2 w-100">
+            <div *ngIf="demoActive;then demoActive else demoDisable"></div>
+            <ng-template #demoActive><ngb-alert [dismissible]="false" [type]="'warning'">Jesteś w trybie demo. Testowe zamówienie zostało złożone.</ngb-alert></ng-template>
+            <ng-template #demoDisable><ngb-alert [dismissible]="false" [type]="'success'">Twoje zamówienie zostało złożone.</ngb-alert></ng-template>
           </div>
-          <p>Opłać zamówienie, wykonując przelew na podane konto. Po zaksięgowaniu płatności wyślemy zamówienie na twój adres.</p>
+          <p class="text-success">Opłać zamówienie, wykonując przelew na podane konto. Po zaksięgowaniu płatności wyślemy zamówienie na twój adres.</p>
           <p class="text-danger">Nr konta bankowego:  <b>PL 0000 0001 0000 0000 0000 001C</b>.</p>
           <h5 class="text-center">Dziękujemy, że z nami jesteś! </h5>
         </div>

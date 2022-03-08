@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/service/user.service';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-my-account',
@@ -14,6 +15,7 @@ export class MyAccountComponent implements OnInit {
   userPasswordForm: FormGroup;
   isResponseUserDetails: boolean;
   isResponseUserPassword: boolean;
+  demoActive = environment.demoActive;
   constructor(public formBuilder: FormBuilder,
               private userService: UserService,
               private authenticationService: AuthenticationService,

@@ -78,9 +78,9 @@
               </div>
             </div>
           </div>
-          <button type="submit" [disabled]="!(registerUserForm.valid && registerActive)" class="btn btn-primary w-100">Zarejestruj się</button>
-          <div *ngIf="!registerActive" class="text-danger text-center my-2">
-            <div>Rejestracja została wyłączona w trybie demo</div>
+          <button type="submit" [disabled]="!registerUserForm.valid || demoActive" class="btn btn-primary w-100">Zarejestruj się</button>
+          <div *ngIf="demoActive" class="text-danger text-center my-2">
+            <div>Rejestracja została wyłączona w trybie demo.</div>
           </div>
           <div class="text-center my-1">
             <a [routerLink]="'/login'" >Masz już konto? Zaloguj się!</a>

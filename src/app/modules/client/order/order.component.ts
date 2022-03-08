@@ -6,6 +6,7 @@ import {CartRequest} from '../../../shared/model/cart';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {User} from '../../../shared/model/user';
 import {ProductOrder} from '../../../shared/model/productOrder';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-order',
@@ -19,6 +20,7 @@ export class OrderComponent implements OnInit {
   userInfo: User;
   orderIsSuccessful: boolean;
   loading: boolean;
+  demoActive = environment.demoActive;
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private orderService: OrderService,

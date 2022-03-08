@@ -1,10 +1,16 @@
 <nav class="header">
   <section>
     <ngb-alert [dismissible]="false" class="d-flex justify-content-center align-items-center">
-      <span class="iconify header-warning" data-icon="ant-design:warning-outlined"></span>
-      <div class="d-flex flex-column ml-3">
-        <span class="">Jest to tylko <strong>wersja demonstracyjna</strong> strony sklepu internetowego. <strong>Nie podawaj żadnych danych osobistych!</strong></span>
-        <span class="mt-1">This is only a <strong>demo version</strong> of the online store website. <strong>Do not enter any personal information!</strong></span>
+      <div class="row">
+        <div class="col-1">
+          <span class="iconify header-warning" data-icon="ant-design:warning-outlined"></span>
+        </div>
+        <div class="col-11">
+          <div class="d-flex flex-column pl-4 pl-md-1">
+            <span class="header-warning-text">Jest to tylko <strong>wersja demonstracyjna</strong> strony sklepu internetowego. <strong>Nie podawaj żadnych danych osobistych!</strong></span>
+            <span class="header-warning-text">This is only a <strong>demo version</strong> of the online store website. <strong>Do not enter any personal information!</strong></span>
+          </div>
+        </div>
       </div>
     </ngb-alert>
   </section>
@@ -15,7 +21,10 @@
         <ul class="header-navbar-nav">
           <li class="nav-item">
             <a class="nav-link" (click)="isMenuCollapsed = true">
-              <div ngbDropdown class="d-inline-block">
+              <div ngbDropdown
+                   class="d-inline-block float_right"
+                   placement="bottom-right"
+                   display="dynamic">
                 <div class="header-account d-flex flex-column justify-content-center align-items-center" id="dropdownAccount" ngbDropdownToggle>
                   <span class="iconify" data-inline="false" data-icon="ph:user-light" style="font-size: 26px;"></span>
                   Twoje konto
@@ -46,7 +55,7 @@
   </section>
   <section class="navbar  navbar-expand-lg navbar-light header-category">
     <div class="container">
-      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      <button class="navbar-toggler text-white navbar-hamburger" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
         &#9776;
       </button>
       <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-center mt-3 mt-lg-0">

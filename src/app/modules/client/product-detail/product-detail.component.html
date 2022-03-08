@@ -8,22 +8,33 @@
         <div class="card card-no-border mb-4 shadow-sm">
           <img src="{{product?.thumbnail}}" class="card-img-top" alt="">
         </div>
+        <div class="card py-4 my-3 px-4 shadow-sm">
+          <span class="card-text">
+            <quill-view
+              [sanitize]="true"
+              [content]="product?.description"
+              format="html"
+              theme="snow">
+            </quill-view>
+          </span>
+        </div>
       </div>
       <div class="col-md-3">
         <div class="card py-4 px-4  shadow-sm">
           <h3 class="mb-3">{{product?.price| currency:'zł': true:'1.0'}}</h3>
-          <div class="mb-1">Dostępność: <span class="font-weight-bold">{{product?.quantity}} sztuk</span></div>
-          <div class="mb-3">Darmowa dostawa <span class="font-weight-bold">od 300 zł</span></div>
+          <div class="mb-1">Dostępność: <span class="font-weight-bold" [ngClass]="product?.quantity == 0 ? 'text-danger' : 'text-success'">{{product?.quantity}} sztuk</span></div>
+          <div class="mb-3">Darmowa dostawa <span class="text-success">od 300 zł!</span></div>
 
           <div *ngIf="isClient(); else employee">
             <button type="submit"
                     class="btn btn-primary  w-100"
-                    [disabled]="product?.quantity==0"
+                    [disabled]="product?.quantity==0 || countProductAdded==product?.quantity"
                     (click)="setProduct(product?.id)">Dodaj do koszyka</button>
             <div *ngIf="isAddedProductToCart" class="text-success mt-3">
               <p>Dodano do koszyka {{countProductAdded}} szt.</p>
             </div>
-            <a *ngIf="product?.quantity==0" class="text-danger">Brak w magazynie</a>
+            <a *ngIf="product?.quantity==0" class="text-danger">Brak w magazynie.</a>
+            <a *ngIf="countProductAdded==product?.quantity" class="text-danger">Nie możesz kupić więcej sztuk.</a>
           </div>
           <ng-template #employee>
             <ng-container *ngIf="isEmployee(); else unauthorized">
@@ -37,18 +48,6 @@
         <div class="card py-4 mt-3 px-4 shadow-sm">
           <p><span class="font-weight-bold">Producent:</span> {{product?.brand.name}}</p>
           <p><span class="font-weight-bold">EAN:</span> {{product?.eanCode}}</p>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="card py-4 mt-3 px-4 shadow-sm">
-          <span class="card-text">
-            <quill-view
-              [sanitize]="true"
-              [content]="product?.description"
-              format="html"
-              theme="snow">
-            </quill-view>
-          </span>
         </div>
       </div>
     </div>

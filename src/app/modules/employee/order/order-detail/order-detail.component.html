@@ -10,20 +10,20 @@
             <table class="table table-striped margin-0">
               <thead>
                 <tr>
-                  <th class="d-inline-block col-1" scope="col">#</th>
-                  <th class="d-inline-block col-2" scope="col">Zdjęcie</th>
-                  <th class="d-inline-block col-5" scope="col">Nazwa</th>
-                  <th class="d-inline-block col-2" scope="col">Ilość</th>
-                  <th class="d-inline-block col-2" scope="col">Cena</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Zdjęcie</th>
+                  <th scope="col">Nazwa</th>
+                  <th scope="col">Ilość</th>
+                  <th scope="col">Cena</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let cart of order?.productOrder; index as i">
-                  <th class="d-inline-block col-1" scope="row">{{ i + 1 }}</th>
-                  <td class="d-inline-block col-2"><img src="{{ cart?.product.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
-                  <td class="d-inline-block col-5">{{ cart?.product.brand.name }} {{ cart?.product.name }}</td>
-                  <td class="d-inline-block col-2">{{ cart?.quantity }}</td>
-                  <td class="d-inline-block col-2">{{ cart?.product.price | currency:'zł': true:'1.0' }}</td>
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td><img src="{{ cart?.product.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
+                  <td><span role="button" [routerLink]="['/product',cart?.product.id]">{{ cart?.product.brand.name }} {{ cart?.product.name }}</span></td>
+                  <td>{{ cart?.quantity }}</td>
+                  <td>{{ cart?.product.price | currency:'zł': true:'1.0' }}</td>
                 </tr>
               </tbody>
             </table>

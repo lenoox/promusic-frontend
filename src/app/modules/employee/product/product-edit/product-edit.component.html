@@ -6,7 +6,7 @@
         <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="nameInput">Nazwa</label>
+              <label for="nameInput">Nazwa:</label>
               <input formControlName="name" type="text" class="form-control" id="nameInput"  placeholder="Nazwa">
               <div *ngIf="getControl.name.touched && getControl.name.invalid" class="text-danger">
                 <div *ngIf="getControl.name.errors.required">Pole jest wymagane.</div>
@@ -15,14 +15,14 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="priceInput">Cena</label>
+              <label for="priceInput">Cena:</label>
               <input formControlName="price" type="text" class="form-control" id="priceInput" placeholder="Cena">
               <div *ngIf="getControl.price.touched && getControl.price.invalid" class="text-danger">
                 <div *ngIf="getControl.price.errors.required">Pole jest wymagane.</div>
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="quantityInput">Ilość w magazynie</label>
+              <label for="quantityInput">Ilość w magazynie:</label>
               <input formControlName="quantity" type="text" class="form-control" id="quantityInput" placeholder="Ilość w magazynie">
               <div *ngIf="getControl.quantity.touched && getControl.quantity.invalid" class="text-danger">
                 <div *ngIf="getControl.quantity.errors.required">Pole jest wymagane.</div>
@@ -31,7 +31,7 @@
           </div>
           <div class="form-row">
             <div formGroupName="category" class="form-group col-md-6">
-              <label for="categoryInput">Kategoria</label>
+              <label for="categoryInput">Kategoria:</label>
               <select formControlName="id" class="form-control" id="categoryInput">
                 <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
               </select>
@@ -40,7 +40,7 @@
               </div>
             </div>
             <div formGroupName="brand" class="form-group col-md-6">
-              <label for="brandInput">Firma</label>
+              <label for="brandInput">Firma:</label>
               <select formControlName="id" class="form-control" id="brandInput">
                 <option *ngFor="let brand of brandList" [value]="brand.id">{{brand.name}}</option>
               </select>
@@ -51,7 +51,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="thumbnailInput">Adres URL zdjęcia produktu</label>
+              <label for="thumbnailInput">Adres URL zdjęcia produktu:</label>
               <input formControlName="thumbnail" type="text" class="form-control" id="thumbnailInput"  placeholder="Zdjęcie">
 
               <div *ngIf="getControl.thumbnail.touched && getControl.thumbnail.invalid" class="text-danger">
@@ -61,7 +61,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="eanCodeInput">Kod EAN produktu</label>
+              <label for="eanCodeInput">Kod EAN produktu:</label>
               <input formControlName="eanCode" type="text" class="form-control" id="eanCodeInput"  placeholder="EAN produktu">
               <div *ngIf="getControl.eanCode.touched && getControl.eanCode.invalid" class="text-danger">
                 <div *ngIf="getControl.eanCode.errors.required">Pole jest wymagane.</div>
@@ -70,7 +70,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="descriptionTextarea">Opis produktu</label>
+              <label for="descriptionTextarea">Opis produktu:</label>
               <app-text-editor class="text-editor" [control]="descriptionControl" id="descriptionTextarea"></app-text-editor>
               <div *ngIf="getControl.description.touched && getControl.description.invalid" class="text-danger">
                 <div *ngIf="getControl.description.errors.required">Pole jest wymagane.</div>

@@ -11,13 +11,13 @@
   <div class="album py-4">
     <div class="container">
       <div class="row">
-        <div *ngFor="let product of productList" class="col-md-3">
+        <div *ngFor="let product of productList" class="col-12 col-sm-4 col-lg-3">
           <div class="card mb-4 shadow-sm">
             <img class="category-producy-img" src="{{product.thumbnail}}" [routerLink]="['/product',product.id]" alt="">
             <div class="card-body">
               <h4 class="card-text">{{product.name}}</h4>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="card-text">{{product.price| currency:'PLN': true:'1.0'}}</p>
+                <p class="card-text">{{product.price | currency:'PLN': true:'1.0'}}</p>
                 <div class="btn-group">
                   <a class="category-cart-icon d-flex align-items-center justify-content-center" [routerLink]="['/product',product.id]">
                     <span class="iconify" data-inline="false" data-icon="ic:round-navigate-next" style="color: #ffffff; font-size: 28px;"></span>
