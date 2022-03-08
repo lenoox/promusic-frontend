@@ -16,11 +16,11 @@
   </section>
   <section class="navbar navbar-light header-main">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="'.'">ProMusic</a>
+      <a class="navbar-brand mr-1" [routerLink]="'.'">ProMusic</a>
       <div class="header-footer-icon">
         <ul class="header-navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" (click)="isMenuCollapsed = true">
+            <a class="nav-link px-1" (click)="isMenuCollapsed = true">
               <div ngbDropdown
                    class="d-inline-block float_right"
                    placement="bottom-right"
@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="isClient()">
-            <a class="nav-link" [routerLink]="'cart'" (click)="isMenuCollapsed = true">
+            <a class="nav-link px-1" [routerLink]="'cart'" (click)="isMenuCollapsed = true">
               <div class="d-flex flex-column justify-content-center align-items-center header-badge-wrapper">
                 <div class="d-flex justify-content-center align-items-center header-badge" id="#lblCartCount">
                   {{showSizeProducts()}}

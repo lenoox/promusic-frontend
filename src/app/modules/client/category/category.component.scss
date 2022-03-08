@@ -23,9 +23,34 @@
       height: 100%;
     }
   }
+
   &-producy-img{
     cursor:pointer;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
   }
+  @media (min-width: 576px) {
+    &-producy-img{
+      height: 120px;
+    }
+  }
+  @media (min-width: 768px) {
+    &-producy-img{
+      height: 160px;
+    }
+  }
+  @media (min-width: 992px) {
+    &-producy-img{
+      height: 170px;
+    }
+  }
+  @media (min-width: 1200px) {
+    &-producy-img{
+      height: 190px;
+    }
+  }
+
   &-cart-icon{
     width: 34px;
     height: 34px;
