@@ -9,3 +9,6 @@
 :host quill-view ::ng-deep .ql-container{
   font-size: 16px;
 }
+:host quill-view ::ng-deep .ql-editor{
+  padding: 0;
+}
