@@ -22,7 +22,7 @@
                 <tr *ngFor="let cart of getProductOrder; index as i">
                   <th scope="row">{{ i + 1 }}</th>
                   <td class="product-img-column"><img src="{{ cart.product?.thumbnail }}" class="cart-thumbnail img-fluid" alt=""></td>
-                  <td>{{ cart?.product.brand.name }} {{ cart.product?.name }}</td>
+                  <td><span role="button" [routerLink]="['/product',cart?.product.id]">{{ cart?.product.brand.name }} {{ cart.product?.name }}</span></td>
                   <td>{{ cart?.quantity }}</td>
                   <td>{{ cart.product?.price | currency:'zł': true:'1.0'}}</td>
                 </tr>

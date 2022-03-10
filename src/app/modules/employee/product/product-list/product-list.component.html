@@ -24,7 +24,7 @@
         <tr *ngFor="let product of productList; index as i">
           <th scope="row">{{ i + 1 }}</th>
           <td class="product-img-column"><img src="{{ product?.thumbnail }}" class="img-fluid" alt=""></td>
-          <td>{{ product?.brand.name }} {{product?.name }}</td>
+          <td><span role="button" [routerLink]="['/product',product?.id]">{{ product?.brand.name }} {{product?.name }}</span></td>
           <td>{{ product?.quantity }}</td>
           <td>{{ product?.price | currency:'zł': true:'1.0' }}</td>
           <td [routerLink]="['/employee/product/',product.id,'edit']">
