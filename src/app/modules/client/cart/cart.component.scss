@@ -2,9 +2,6 @@
 .cart{
   @include min-height;
 }
-.cart-thumbnail{
-  max-width:20vh;
-}
 .cart-inline-block{
   display: inline
 }
@@ -14,4 +11,7 @@
 }
 .cart-transparent{
   opacity: 15%;
+}
+.product-img-column{
+  width: 240px;
 }
