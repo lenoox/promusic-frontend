@@ -9,7 +9,7 @@
     "build:test": "ng build --configuration=test",
     "build:prod": "ng build --configuration=prod",
     "test": "ng test",
-    "test:ci": "ng test --watch=false --code-coverage",
+    "test:ci": "ng test -- --watch=false --no-progress --browsers=ChromeHeadlessCI --code-coverage",
     "test:server": "cd coverage && http-server -c-1 .",
     "lint": "ng lint",
     "e2e": "ng e2e"
