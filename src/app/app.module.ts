@@ -10,20 +10,20 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpTokenInterceptor} from './core/interceptors/http-token.interceptor';
 import {EmployeeModule} from './modules/employee/employee.module';
 import {AccountModule} from './modules/account/account.module';
-
+export const APPMODULES = [
+  BrowserModule,
+  AppRoutingModule,
+  CoreModule,
+  ClientModule,
+  EmployeeModule,
+  AuthModule,
+  AccountModule
+];
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    ClientModule,
-    EmployeeModule,
-    AuthModule,
-    AccountModule
-  ],
+  imports: APPMODULES,
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import { Observable } from 'rxjs';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {TokenService} from '../authentication/token.service';
 
@@ -15,7 +14,7 @@ export class EmployeeGuard implements CanActivate {
   ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): | Promise<boolean | UrlTree> {
     return new Promise((resolve) => {
       if (this.tokenService.getRefreshToken() === null) {
         console.log('token is empty');

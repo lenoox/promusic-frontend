@@ -10,7 +10,17 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {QuillModule} from 'ngx-quill';
+import {HttpClientModule} from "@angular/common/http";
 
+export const CLIENTMODULES = [
+  CommonModule,
+  RouterModule,
+  ClientRoutingModule,
+  HttpClientModule,
+  SharedModule,
+  ReactiveFormsModule,
+  QuillModule.forRoot()
+]
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,14 +32,7 @@ import {QuillModule} from 'ngx-quill';
   exports: [
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ClientRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    QuillModule.forRoot()
-  ]
+  imports: CLIENTMODULES
 })
 export class ClientModule {
 }

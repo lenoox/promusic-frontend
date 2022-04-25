@@ -5,8 +5,14 @@ import {HeaderComponent} from './layout/header/header.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
-
-
+import {AuthenticationService} from "./authentication/authentication.service";
+import {TokenService} from "./authentication/token.service";
+export const COREMODULES = [
+  CommonModule,
+  RouterModule,
+  HttpClientModule,
+  SharedModule
+]
 @NgModule({
   declarations: [
     FooterComponent,
@@ -16,12 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    HttpClientModule,
-    SharedModule
-  ]
+  providers: [TokenService,AuthenticationService],
+  imports: COREMODULES
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

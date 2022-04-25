@@ -12,6 +12,7 @@ services:
       - .env
     ports:
       - '80:80'
+      - '9876:9876'
     networks:
       - promusic
 networks:

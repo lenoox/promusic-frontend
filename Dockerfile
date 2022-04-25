@@ -1,6 +1,5 @@
 FROM node:16 as build
 WORKDIR /app
-
 ARG PROFILE_ACTIVE
 
 RUN npm install -g npm

@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductEditComponent } from './product-edit.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {BrowserModule} from "@angular/platform-browser";
 
 describe('ProductEditComponent', () => {
   let component: ProductEditComponent;
@@ -8,7 +13,13 @@ describe('ProductEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductEditComponent ]
+      declarations: [ ProductEditComponent ],
+      imports: [ RouterTestingModule,
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        NgbModule, NgbModule, BrowserModule],
     })
     .compileComponents();
   });
