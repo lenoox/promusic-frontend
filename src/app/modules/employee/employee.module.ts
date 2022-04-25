@@ -10,8 +10,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { OrderDetailComponent } from './order/order-detail/order-detail.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import {HttpClientModule} from "@angular/common/http";
 
-
+export const EMPLOYEEMODULE = [
+  CommonModule,
+  SharedModule,
+  EmployeeRoutingModule,
+  ReactiveFormsModule,
+  HttpClientModule,
+]
 @NgModule({
   declarations: [
     HomeComponent,
@@ -21,11 +28,6 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     ProductListComponent,
     ProductEditComponent
     ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    EmployeeRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: EMPLOYEEMODULE
 })
 export class EmployeeModule { }
