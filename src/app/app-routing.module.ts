@@ -14,11 +14,6 @@ const routes: Routes = [
     path: '',
     loadChildren: './modules/account/account.module#AccountModule'
   },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
